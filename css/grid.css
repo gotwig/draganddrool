@@ -1,0 +1,494 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-Regular-webfont.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'airborneregular';
+    src: url('fonts/airborne-webfont.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'vv';
+  src: url('fonts/vv.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  color:white;
+  font-family: 'vv';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+/* opacity .8 */
+/* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+/* Animation center compensation - magrins should be symmetric */
+/* remove if not needed */
+  margin-left: 0.2em;
+/* you can be more comfortable with increased icons size */
+/* font-size: 120%; */
+/* Uncomment for 3D effect */
+/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-plus:before { content: '\2b'; } /* '+' */
+.icon-home-1:before { content: '\e800'; } /* 'î €' */
+.icon-home:before { content: '\2302'; } /* 'âŒ‚' */
+.icon-cog:before { content: '\2699'; } /* 'âš™' */
+.icon-pencil:before { content: '\270e'; } /* 'âœŽ' */
+.icon-help:before { content: '\2753'; } /* 'â“' */
+.icon-quote:before { content: '\275e'; } /* 'âž' */
+.icon-plus-circle:before { content: '\2795'; } /* 'âž•' */
+.icon-user-add:before { content: '\e700'; } /* 'îœ€' */
+.icon-trash:before { content: '\e729'; } /* 'îœ©' */
+.icon-login:before { content: '\e740'; } /* 'î€' */
+.icon-logout:before { content: '\e741'; } /* 'î' */
+.icon-emo-thumbsup:before { content: '\e804'; color:black; position:absolute;font-size:320%; margin-top:20px;} /* 'î „' */
+.icon-github-circled:before { content: '\f09b'; } /* 'ï‚›' */
+.icon-gplus-squared:before { content: '\f0d4'; } /* 'ïƒ”' */
+.icon-twitter-squared:before { content: '\f304'; } /* 'ïŒ„' */
+.icon-facebook-squared:before { content: '\f308'; } /* 'ïŒˆ' */
+.icon-picture:before { content: '🌄'; } /* '\1f304' */
+.icon-user:before { content: '👤'; } /* '\1f464' */
+.icon-upload:before { content: '📤'; } /* '\1f4e4' */
+
+
+body {
+  padding: 1em;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  background: url("../icons/background/Lake%20McDonald.jpg") no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+  font-family: Open Sans;
+  }
+
+
+
+
+a { color: #000; }
+a:hover { color: #000; text-decoration: none; }
+
+::selection { background: #fd0; }
+
+.button { background: #f5f5f5; color: #000; text-decoration: none; font-size: 0.8em; font-weight: 700; padding: 5px 10px; float: left; display: block; overflow: hidden; }
+.button:hover { background: #000; color: #fff; }
+.reset { background: #fff; }
+.reset:hover { background: #fff; }
+
+
+ .editable:focus + .button_group{ 
+ 	    -webkit-transition: opacity .3s, left .3s, top.3s;
+    -moz-transition: opacity .3s, left .3s, top .3s;
+    -o-transition: opacity .3s, left .3s, top .3s;
+    transition: opacity .3s, left .3s, top .3s;
+ 	
+ 	    opacity: 1;
+    height: auto;
+ 	}
+
+ .gs_w:hover > .button_group{ 
+ 	    -webkit-transition: opacity .3s, left .3s, top.3s;
+    -moz-transition: opacity .3s, left .3s, top .3s;
+    -o-transition: opacity .3s, left .3s, top .3s;
+    transition: opacity .3s, left .3s, top .3s;
+ 	
+ 	    opacity: 1;
+    height: auto;
+ 	}
+
+
+.button_group{
+	
+    display: block;
+    -webkit-transition: opacity 1s ease-out;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+	
+	position: absolute;
+	bottom: 6px;
+}
+
+
+/* jquery */
+.ui-accordion-header { background: #f5f5f5; padding: 6px 10px; outline: none; }
+.ui-accordion-header a { text-decoration: none; }
+.ui-accordion-content { padding: 10px 0; }
+
+.code { padding: 10px; font-family: "Courier New", "Courier", serif; background: #f5f5f5; }
+
+.gradient { 
+background: -moz-linear-gradient(top, #eeeeee 0%, #dddddd 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* IE10+ */
+background: linear-gradient(to bottom, #eeeeee 0%,#dddddd 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */ 
+}
+
+.light { 
+background: -moz-linear-gradient(top, #fafafa 0%, #ffffff 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #fafafa 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #fafafa 0%,#ffffff 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #fafafa 0%,#ffffff 100%); /* IE10+ */
+background: linear-gradient(to bottom, #fafafa 0%,#ffffff 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a:link{
+	text-decoration: none;
+}
+
+.editable{
+	cursor:text;
+}
+
+#spinner{
+	position: absolute;
+	left: 44.7%;
+	top: 38%;
+}
+
+
+#headarea{
+	height: 176px;
+}
+
+#logo_underline{
+	margin-top: 0px;
+}
+
+#logo {
+font-family: 'airborneregular'; 
+font-weight: normal; 
+font-style: normal; 
+color: white;
+text-transform: uppercase;
+font-size: 2.4em;
+}
+
+#gridname_background{
+	width: 100%;
+	border-radius: 4px 4px 0px 0px;
+	text-align: center;
+	visibility: hidden;
+}
+
+#gridname{
+	color: white;
+	font-weight: bold;
+	visibility: hidden;
+	white-space: nowrap;
+}
+
+#w3chtml5{
+	float:right;
+	margin-bottom: 20px;
+	margin-right: 12px;
+}
+
+.gridlevel{
+}
+
+
+.gridlevel! > .remove_grid_checkbox:checked{
+    display:none;
+}
+
+
+.welcome{
+	color: blue;
+	background: grey;
+}
+
+.success{
+	color: lime;
+	background: grey;
+}
+
+/* Show only save button when on focus */
+.save{	
+		display: none;
+		margin-left: 5px;
+		margin-top: 18px;
+
+		outline: none;
+		cursor: pointer;	
+		text-align: center;
+		text-decoration: none;
+		font: 9px/100% Arial, Helvetica, sans-serif;
+		font-weight:bolder;	
+		padding: 5px 10px;	
+		-webkit-border-radius: 5px; 
+		-moz-border-radius: 5px;
+		border-radius: 5px;	
+		color: #606060;
+		border: solid 1px #b7b7b7;	
+		background: #fff;
+		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+		background: -moz-linear-gradient(top,  #fff,  #ededed);
+	}	
+	
+	.save:hover
+	{
+        background: #ededed;
+		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+		background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+	}
+
+
+/* :-----------------------------: */
+
+p {
+	margin: 2px;
+	padding: 3px;
+}
+
+p :focus {
+		outline: 0;
+	}
+
+/* Different types of content: */
+.image {
+	width:100%;
+	height:100%;
+	border-radius:7px 7px 7px 7px;
+}
+
+.quote {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 85%;
+	word-wrap: break-word;
+	font-style:italic;
+	outline:none;
+	height:72px; overflow:hidden
+}
+
+.text {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 85%;
+	word-wrap: break-word;
+	outline:none;
+	height:72px; overflow:hidden
+}
+
+/* -----------------------------: */
+
+.remove_action{
+    position: absolute;
+	bottom: 5px;
+	right: 5px
+    /*padding-top: 20px;
+    padding-left: 5px;
+    */
+}
+
+.actionicon{
+	opacity: 0.35;
+	width: 20px;
+}
+
+.actionicon:hover{
+	opacity: 1.0;
+}
+
+.actionsl{
+    position: absolute;
+	bottom: 5px;
+	right: 30px;
+    /*padding-top: 20px;
+    padding-left: 5px;
+    */
+}
+
+
+#newactions{
+    margin-left: 20%;
+    margin-top: 26px;
+    background-color: rgb(146, 146, 146);
+	border:1px outset grey;
+	border-radius: 8px;
+	width: 170px;
+	position:absolute;
+}
+
+#newactions li{
+    color: white;
+background-color: transparent;
+width: 200px;
+height: 60px;
+list-style-type: none;
+}
+
+
+#underline_addnewaction{
+	color: rgb(173, 173, 173);
+	position:absolute;
+	font-size: 16px;
+	width:220px;
+	-webkit-transform-origin:84px 70px;
+    transform-origin:84px 70px;
+    display:inline-block;
+    -webkit-transform:rotate(-90deg);
+    text-align:center;
+	font-family: 'airborneregular';
+	font-style: italic;
+	margin-left:-45px;
+	margin-top:-10px;
+}
+
+.new_action{
+	font-size: 250%;
+	white-space:nowrap;
+	float:left;
+    padding-bottom: 3px;
+    padding-left: 0px;
+    list-style-type: square;
+
+cursor: pointer;
+}
+
+
+    input {
+    width: 100px;
+}
+
+.gridster {
+    position:relative;
+    background-color: rgba(99, 70, 39, 0.08);
+    visibility: hidden;
+    border:none;
+    margin: 9px;
+	border-radius: 4px;
+} 
+
+#grid_overview{
+	height: 134px;
+	overflow-y: auto;
+	font-size: 1em;
+}
+
+
+li {
+    background-color: white;
+    width: 150px;
+    height: 80px;
+	list-style-type: none;
+	border-radius: 7px 7px 7px 7px;
+	cursor:default;
+}
+
+.gs_w{
+	border: solid 2px whitesmoke;
+}
+
+.gridster > * {
+    margin: 0 auto;
+    -webkit-transition: height .4s;
+    -moz-transition: height .4s;
+    -o-transition: height .4s;
+    -ms-transition: height .4s;
+    transition: height .4s;
+}
+
+.gridster .gs_w{
+    z-index: 2;
+    position: absolute;
+}
+
+.ready{
+	top:96px;
+}
+
+.ready .gs_w:not(.preview-holder) {
+    -webkit-transition: opacity .3s, left .3s, top.3s;
+    -moz-transition: opacity .3s, left .3s, top .3s;
+    -o-transition: opacity .3s, left .3s, top .3s;
+    transition: opacity .3s, left .3s, top .3s;
+}
+
+.ready .gs_w:not(.preview-holder) {
+    -webkit-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+    -moz-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+    -o-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+    transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+}
+
+.gridster .preview-holder {
+    z-index: 1;
+    position: absolute;
+    background-color: #fff;
+    border-color: #fff;
+    opacity: 0.3;
+}
+
+.gridster .player-revert {
+    z-index: 10!important;
+    -webkit-transition: left .3s, top .3s!important;
+    -moz-transition: left .3s, top .3s!important;
+    -o-transition: left .3s, top .3s!important;
+    transition:  left .3s, top .3s!important;
+}
+
+.gridster .dragging {
+    z-index: 10!important;
+    -webkit-transition: all 0s !important;
+    -moz-transition: all 0s !important;
+    -o-transition: all 0s !important;
+    transition: all 0s !important;
+}
+
+/* Uncomment this if you set helper : "clone" in draggable options */
+/*.gridster .player {
+  opacity:0;
+}*/

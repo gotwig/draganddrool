@@ -1,0 +1,72 @@
+oooooooooo.                                        .oo.     
+`888'   `Y8b                                     .88' `8.   
+ 888      888 oooo d8b  .oooo.    .oooooooo      88.  .8'   
+ 888      888 `888""8P `P  )88b  888' `88b       `88.8P     
+ 888      888  888      .oP"888  888   888        d888[.8'  
+ 888     d88'  888     d8(  888  `88bod8P'       88' `88.   
+o888bood8P'   d888b    `Y888""8o `8oooooo.       `bodP'`88. 
+                                 d"     YD                  
+                                 "Y88888P'                  
+                                                            
+oooooooooo.                                oooo             
+`888'   `Y8b                               `888             
+ 888      888 oooo d8b  .ooooo.   .ooooo.   888             
+ 888      888 `888""8P d88' `88b d88' `88b  888             
+ 888      888  888     888   888 888   888  888             
+ 888     d88'  888     888   888 888   888  888             
+o888bood8P'   d888b    `Y8bod8P' `Y8bod8P' o888o
+
+
+
+ Copyright (C) 2013 - Eduard Gotwig <gotwig@ubuntu.com>
+
+ Author:    Eduard Gotwig
+ License:   MIT - Please refer to me as an author 
+            and the github page of my work (Drag and Drool)
+ Homepage:  http://about.me/gotwig
+
+
+-------------------
+
+
+
+The background image (Lake McDonald.jpg)
+is part of elementary OS Luna (elementaryos.org)
+
+You should check it out.
+
+Copyright for the boxes area goes to http://gridster.net/
+(https://github.com/ducksboard/gridster.js) and DUCKSBOARD
+
+-------------------
+
+Font & icon license info
+
+
+## Font Awesome
+
+   Copyright (C) 2012 by Dave Gandy
+
+   Author:    Dave Gandy
+   License:   CC BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
+   Homepage:  http://fortawesome.github.com/Font-Awesome/
+
+
+## Entypo
+
+   Copyright (C) 2012 by Daniel Bruce
+
+   Author:    Daniel Bruce
+   License:   SIL (http://scripts.sil.org/OFL)
+   Homepage:  http://www.entypo.com
+
+
+## Fontelico
+
+   Copyright (C) 2012 by Fontello project
+
+   Author:    Crowdsourced, for Fontello project
+   License:   SIL (http://scripts.sil.org/OFL)
+   Homepage:  http://fontello.com
+
+
