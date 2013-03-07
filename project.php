@@ -61,9 +61,9 @@ if ($diff<60)
 <meta name="author" content="Eduard Gotwig">
 <meta name="keywords" content="drag and drool,drag, drool, eduard gotwig, drag, jquery drag, css4, css4 menu, css parent selectors, gridster, filepicker">
   
-  <link rel="stylesheet" type="text/css" href="grid.css">
+  <link rel="stylesheet" type="text/css" href="css/grid.css">
 
-    <link rel="stylesheet" type="text/css" href="login_panel/css/slide.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/slide.css" media="screen" />
         
     <script type='text/javascript' src='jquery/jquery-1.9.0.min.js'></script>
    	<script type="text/javascript" src="jquery/cssparentselector.js"></script>

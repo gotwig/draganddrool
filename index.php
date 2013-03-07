@@ -104,9 +104,9 @@ echo '</script>';
 <head>
 <title>Drag&amp;Drool: Upload, Edit, Manage, Create</title>
   
-  <link rel="stylesheet" type="text/css" href="grid.css">
+  <link rel="stylesheet" type="text/css" href="css/grid.css">
 
-    <link rel="stylesheet" type="text/css" href="login_panel/css/slide.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/slide.css" media="screen" />
         
         
     <script type='text/javascript' src='jquery/jquery-1.9.0.min.js'></script>
@@ -266,7 +266,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 
 <body>
 
-<img id="spinner" alt="Loading Boxes..." src="/project/icons/image_381811.gif" />
+<img id="spinner" alt="Loading Boxes..." src="icons/image_381811.gif" />
 
 <!-- Panel -->
 
