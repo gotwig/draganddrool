@@ -1,4 +1,4 @@
-draganddrool
+Drag and Drool
 ============
 
-Your boxes in 2D.
+Your Boxes in 2D.
