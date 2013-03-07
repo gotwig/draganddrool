@@ -3,7 +3,7 @@ Warning: I have just done a few commits. You can't use Drag and Drool right now 
 Drag and Drool is NOT secured versus SQL Injections!
 
 Please report all issues.
-
+<pre>
 
 oooooooooo.                                        .oo.     
 `888'   `Y8b                                     .88' `8.   
@@ -25,7 +25,10 @@ o888bood8P'   d888b    `Y8bod8P' `Y8bod8P' o888o
 
                     Your Boxes in 2D.
 
+
                    www.DragAndDrool.tk
+</pre>
+
 
 ============================================================
 
