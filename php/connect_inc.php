@@ -1,9 +1,4 @@
 <?php
+require_once '../conf/Config.php';
 
-  require 'pwd_inc.php';
-  
-  $link = mysqli_connect($db_server,$db_user,$db_pwd,$db_name);
-  
-
-
-?>
+$link = mysqli_connect(Config::MYSQL_SERVER, Config::MYSQL_USER, Config::MYSQL_PASS, Config::DEFAULT_DATABASE);
