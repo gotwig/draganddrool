@@ -52,6 +52,7 @@ class Grid
 	{
 		global $link;
 		
+		// @todo SQL-INYECTION
 		$sql1 = "INSERT INTO `login`(`id`, `name`, `pwd`, `email`, `ban`, `lastusedgrid`) VALUES ('','".$_POST['new_username']."','".md5($_POST['new_password'])."','".$_POST['new_email']."', '', NULL)";
 		
 		
@@ -76,5 +77,34 @@ class Grid
 		
 		
 		header("Location: ../project.php");
+	}
+	
+	public static function remove()
+	{
+		// @todo SQL-INYECTION
+		
+		$id = $_POST['id'];
+		$grid = $_SESSION['gridid'];
+
+		$sql1 = "DELETE FROM `gridentries` WHERE `gridtable`=".$id.";";
+		
+		if($id==$grid){
+			$sql1_2 = 'UPDATE login SET lastusedid=null WHERE id='.$_POST['id'];
+			$t = mysqli_query($link,$sql1_2);
+		}
+		
+		$sql2 .= "DELETE FROM `grid` WHERE `id`=".$id.";";
+		
+		$t = mysqli_query($link,$sql1);
+		if ( !$t ) {
+			die('Error DELETE: ' . mysqli_error());
+		}
+		
+		$t = mysqli_query($link,$sql2);
+		if ( !$t ) {
+			die('Error DELETE: ' . mysqli_error());
+		}
+		
+		echo '0';
 	}
 }
