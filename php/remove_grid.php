@@ -1,9 +1,8 @@
 <?php
+require_once 'connect_inc.php';
+require_once '../lib/Session.php';
 
-include("connect_inc.php");
-	
-	session_start();
-	session_name('draganddrool');
+Session::init();
 	
 $id = $_POST['id'];
 $grid = $_SESSION['gridid'];
@@ -29,4 +28,3 @@ $t = mysqli_query($link,$sql2);
 
 
 	echo '0';
-?>

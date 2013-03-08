@@ -1,18 +1,14 @@
 <?php
-include("connect_inc.php");
+require_once 'connect_inc.php';
+require_once '../lib/Session.php';
 
-	session_start();
-	
-	session_name('draganddrool');
+Session::init();
 
-	
-$sql = "INSERT INTO `grid`(`id`, `name`, `ownerid`, `lastchange`) VALUES ('', 'Put new Gridname here', '".$_SESSION['id']."', CURRENT_TIMESTAMP)";
-	
-	$t = mysqli_query($link,$sql);
+$t = mysqli_query($link, "INSERT INTO `grid`(`id`, `name`, `ownerid`, `lastchange`) VALUES ('', 'Put new Gridname here', '".$_SESSION['id']."', CURRENT_TIMESTAMP)");
 
-    	if ( !$t ) {
-       		die('Fehler beim INSERT: ' . mysqli_error($link)); }
+if ( !$t ) 
+{
+	die('Error INSERT: ' . mysqli_error($link));
+}
 
-	echo (mysqli_insert_id($link));
-
-?>
+echo mysqli_insert_id($link);

@@ -1,21 +1,10 @@
 <?php
+require_once 'lib/Session.php';
+require_once 'php/connect_inc.php';
+
+Session::init();
+
 header('Content-type: text/html; charset=utf-8');
-session_start();
-
-require 'php/connect_inc.php';
-
-
-session_name('draganddrool');
-// Starting the session
-
-if($_SESSION['id']){
-	header("Location: project.php");
-	exit;
-	}
-
-session_set_cookie_params(2*7*24*60*60);
-// Making the cookie live for 2 weeks
-
 
 if($_SESSION['id'] && !isset($_COOKIE['tzRemember']) && !$_SESSION['rememberMe'])
 {

@@ -1,18 +1,16 @@
 <?php
-	include("connect_inc.php");
-	
-	session_start();
-	
-	session_name('draganddrool');
-	
-	$id = $_POST['id'];
-	$actualgrid = $_SESSION['gridid'];
-	$sql = "DELETE FROM gridentries WHERE id=".$id;
-	$t = mysqli_query($link,$sql);
+require_once 'connect_inc.php';
 
-    	if ( !$t ) {
-       		die('Fehler beim DELETE: ' . mysqli_error()); }
+require_once '../lib/Session.php';
 
+Session::init();
 
+$id = $_POST['id'];
+$actualgrid = $_SESSION['gridid'];
 
-?>
+$t = mysqli_query($link, "DELETE FROM gridentries WHERE id=".$id);
+
+if(!$t)
+{
+	die('Error DELETE: ' . mysqli_error());
+}
