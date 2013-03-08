@@ -1,14 +1,8 @@
 <?php	
+require_once 'connect_inc.php';
+require_once '../lib/Grid.php';
+require_once '../lib/Session.php';
 
-include("connect_inc.php");
+Session::init();
 
-session_start();
-session_name('draganddrool');
-	
-$_SESSION['gridid'] = $_POST['id'];
-
-$sql = 'UPDATE login SET lastusedgrid='.$_SESSION['gridid'].' WHERE id='.$_SESSION['id'];
-
-mysqli_query($link,$sql);
-
-?>
+Grid::switchAction();
