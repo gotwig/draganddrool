@@ -1,18 +1,7 @@
 <?php
-include("connect_inc.php");
+require_once 'connect_inc.php';
+require_once '../lib/Session.php';
+require_once '../lib/Grid.php';
 
-	session_start();
-	
-	session_name('draganddrool');
-
-	
-$sql = "INSERT INTO `grid`(`id`, `name`, `ownerid`, `lastchange`) VALUES ('', 'Put new Gridname here', '".$_SESSION['id']."', CURRENT_TIMESTAMP)";
-	
-	$t = mysqli_query($link,$sql);
-
-    	if ( !$t ) {
-       		die('Fehler beim INSERT: ' . mysqli_error($link)); }
-
-	echo (mysqli_insert_id($link));
-
-?>
+Session::init();
+Grid::add();

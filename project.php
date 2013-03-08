@@ -1,28 +1,17 @@
 <?php
+require_once 'lib/Session.php';
+require_once 'lib/Login.php';
+require_once 'php/connect_inc.php';
+
+Session::init();
+Login::checkLoginRedirect();
+
 header('Content-type: text/html; charset=utf-8');
-session_start();
-
-require 'php/connect_inc.php';
-
-
-session_name('draganddrool');
-// Starting the session
-
-if(!$_SESSION['id']) {
-	header("Location: index.php");
-	exit;
-	}
 
 if(isset($_GET['logoff']))
 {
-	$_SESSION = array();
-	session_destroy();
-	header("Location: index.php");
-	exit;
+	Session::destroy();
 }
-session_set_cookie_params(2*7*24*60*60);
-// Making the cookie live for 2 weeks
-
 
 function plural($num) {
 	if ($num != 1)
