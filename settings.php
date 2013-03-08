@@ -6,7 +6,7 @@ session_set_cookie_params(2*7*24*60*60);
 
 if(!$_SESSION['id']) {
 	header("Location: index.php");
-	echo '<h1>You have to be <a href="/project">log</a>ged <ahref="/project">in</a>, to change your user settings.</h1>';
+	echo '<h1>You have to be <a href="index.php">log</a>ged <ahref="index.php">in</a>, to change your user settings.</h1>';
 	}
 
 ?>
@@ -40,7 +40,7 @@ margin:50px !important;
 
 <body>
 
-	<h2><a id="logo" href="/project">Drag&amp;<br>Drool</a></h2>
+	<h2><a id="logo" href="index.php">Drag&amp;<br>Drool</a></h2>
     <h2 style="margin-top:0px;margin:20px;">Settings</h2>
 
 <div id="main">
