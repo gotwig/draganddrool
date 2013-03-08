@@ -2,7 +2,7 @@
 header('Content-type: text/html; charset=utf-8');
 session_start();
 
-require 'php/connect_inc.php';
+require_once 'php/connect_inc.php';
 
 
 session_name('draganddrool');
