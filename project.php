@@ -158,15 +158,36 @@ case "image": content='<li data-id="'+ id + '"><img alt="image content" class="n
 
     $(document).ready(function() {
     	
+    	$('body').delegate('input','focus', function() {
+    $(this).attr('maxLength',21);
+});
     	
-    	
-   $("#gridname").editable("php/save_gridinfo.php", {
+    // Editing the Gridname in the loginbar
+   $("#gridname").editable("save_gridinfo.php", {
       submitdata : function(value, settings) { return {id: $('#gridname').data('actualgrid')}}, 
       indicator : "<img src='icons/indicator.gif'>",
       tooltip   : "Click to edit",
       style  : "inherit"
       
   });
+   
+   
+   // To switch grids
+	    $(document).on("click", ".gridinfo_data", function(e){
+			var id = $(this).data('gridid');
+
+			$.ajax({
+				url: 'switch_grid.php',
+				type: 'POST',
+				data: {
+			id:	id,
+				},
+				success: function (data) {
+                location.reload();
+                }
+			});
+		
+	});
    
    
       	// Reset Font Size
