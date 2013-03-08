@@ -60,9 +60,9 @@
 .icon-gplus-squared:before { content: '\f0d4'; } /* 'ïƒ”' */
 .icon-twitter-squared:before { content: '\f304'; } /* 'ïŒ„' */
 .icon-facebook-squared:before { content: '\f308'; } /* 'ïŒˆ' */
-.icon-picture:before { content: '🌄'; } /* '\1f304' */
-.icon-user:before { content: '👤'; } /* '\1f464' */
-.icon-upload:before { content: '📤'; } /* '\1f4e4' */
+.icon-picture:before { content: '\1f304'; } /* '\1f304' */
+.icon-user:before { content: '\1f304'; } /* '\1f464' */
+.icon-upload:before { content: '\1f304���'; } /* '\1f4e4' */
 
 
 body {
