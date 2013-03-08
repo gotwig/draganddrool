@@ -1,7 +1,7 @@
 <?php
 require_once 'lib/Session.php';
 require_once 'lib/Login.php';
-require_once 'php/connect_inc.php';
+require_once 'lib/connect_inc.php';
 
 Session::init();
 Login::checkLoginRedirect();
