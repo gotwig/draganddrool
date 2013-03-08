@@ -14,7 +14,6 @@ $sql1 = "DELETE FROM `gridentries` WHERE `gridtable`=".$id.";";
 if($id==$grid){
 $sql1_2 = 'UPDATE login SET lastusedid=null WHERE id='.$_POST['id'];
 $t = mysqli_query($link,$sql1_2);
-echo "Works";
 }
 
 

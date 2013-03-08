@@ -2,3 +2,4 @@
 {"contributors":[],"silentsave":true,"ts":1362696371658,"patch":[[{"diffs":[[0,"\" href=\""],[1,"login/"],[0,"grid.css"]],"start1":2781,"start2":2781,"length1":16,"length2":22}]],"length":13552,"saved":false}
 {"ts":1362696378013,"patch":[[{"diffs":[[0,"\" href=\""],[-1,"login"],[1,"css"],[0,"/grid.cs"]],"start1":2781,"start2":2781,"length1":21,"length2":19},{"diffs":[[0,"\" href=\""],[-1,"login_panel/"],[0,"css/slid"]],"start1":2846,"start2":2846,"length1":28,"length2":16}]],"length":13538,"saved":false}
 {"ts":1362696470966,"patch":[[{"diffs":[[0,"rc=\""],[-1,"/project/"],[0,"icon"]],"start1":7846,"start2":7846,"length1":17,"length2":8}]],"length":13529,"saved":false}
+{"contributors":[],"silentsave":true,"ts":1362727143863,"patch":[[{"diffs":[[0,"pt>\n"],[-1,"   \t<script type=\"text/javascript\" src=\"jquery/cssparentselector.js\"></script>\n"],[0,"  \t<"]],"start1":2979,"start2":2979,"length1":87,"length2":8}]],"length":13450,"saved":false}

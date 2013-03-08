@@ -1,0 +1,1 @@
+{"ts":1362729754557,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"<?php\r\n\tinclude(\"connect_inc.php\");\r\n\t\r\n\t$sql_time = 'UPDATE grid SET lastchange=\"' . date(\"Y-m-d H:i:s\") . '\" WHERE id'.$_POST['id'] ;\r\n\r\n\tmysqli_query($link,$sql_time);\r\n\r\n?>\r\n"]],"start1":0,"start2":0,"length1":0,"length2":178}]],"length":178}

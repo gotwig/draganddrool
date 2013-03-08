@@ -33,7 +33,7 @@ $_SESSION['id'] = $account_id;
 $_SESSION['usr'] = $_POST['new_username'];
 
 
-header("Location: project.php");
+header("Location: ../project.php");
 
 
 ?>

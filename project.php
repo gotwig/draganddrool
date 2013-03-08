@@ -2,7 +2,7 @@
 header('Content-type: text/html; charset=utf-8');
 session_start();
 
-require 'connect_inc.php';
+require 'php/connect_inc.php';
 
 
 session_name('draganddrool');
@@ -126,7 +126,7 @@ function saveBox(type,id,content, cssstyle){
 	}
 	
 			$.ajax({
-				url: 'save.php',
+				url: 'php/save.php',
 				type: 'POST',
 				data: {
 		    id:	id,
@@ -161,7 +161,7 @@ case "image": content='<li data-id="'+ id + '"><img alt="image content" class="n
     	
     	
     	
-   $("#gridname").editable("save_gridinfo.php", {
+   $("#gridname").editable("php/save_gridinfo.php", {
       submitdata : function(value, settings) { return {id: $('#gridname').data('actualgrid')}}, 
       indicator : "<img src='icons/indicator.gif'>",
       tooltip   : "Click to edit",
@@ -225,7 +225,7 @@ $(document).on("click", ".remove_action", function(e){
   			}
 
 			$.ajax({
-				url: 'remove.php',
+				url: 'php/remove.php',
 				type: 'POST',
 				data: {
 			id:	id,
@@ -234,7 +234,7 @@ $(document).on("click", ".remove_action", function(e){
 			});
 
 
-			$.post('save_position.php', {data: gridster.serialize()}, function(ret) {
+			$.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
 						//your callback
 			});
 
@@ -265,7 +265,7 @@ $(document).on("click", ".remove_action", function(e){
 			var id = $('#gridname').data('actualgrid')
 			var type = $(this).data('type');
 	 		$.ajax({
-				url: 'add.php',
+				url: 'php/add.php',
 				type: 'POST',
 				data: {
 		id:	id,
@@ -281,7 +281,7 @@ $(document).on("click", ".remove_action", function(e){
 		
 		$(document).on("click", "#new_grid", function(e){
 			$.ajax({
-				url: 'add_grid.php',
+				url: 'php/add_grid.php',
 				type: 'POST',
 				data: {},
 				success: function (data) {
@@ -299,7 +299,7 @@ $(document).on("click", ".remove_action", function(e){
 			var id = $(this).parent().siblings('a').data('gridid');
 			
 			$.ajax({
-				url: 'remove_grid.php',
+				url: 'php/remove_grid.php',
 				type: 'POST',
 				data: {
 					id: id
@@ -346,7 +346,7 @@ $(document).on("click", ".remove_action", function(e){
             <h1>Members panel</h1>
             
             <p>What about...</p>
-            <a href="registered.php">Changing your Settings<i class="icon-cog"></i></a>
+            <a href="settings.php">Changing your Settings<i class="icon-cog"></i></a>
 			<br>
             <a href="faq.html">Reading <b>F</b>requently-<b>A</b>sked <b>Q</b>uestions</a>
 			<br>
@@ -413,7 +413,6 @@ $(document).on("click", ".remove_action", function(e){
 </div> <!--panel -->
 
 <?php
-  require 'connect_inc.php';
 
 function db_result($result)
 {
