@@ -331,7 +331,7 @@ background-position: 148px;}
 #panel .content input.bt_register {
 	width: 110px;
 	color: white;
-	background: transparent url(/project/icons/signup_free.png) no-repeat 0 0;
+	background: transparent url(../icons/signup_free.png) no-repeat 0 0;
 }
 
 #panel .lost-pwd {
