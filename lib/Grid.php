@@ -10,7 +10,7 @@ class Grid
 		mysqli_query($link, 'UPDATE login SET lastusedgrid='.$_SESSION['gridid'].' WHERE id='.$_SESSION['id']);
 	}
 	
-	public static function saveTimestamp()
+	private static function saveTimestamp()
 	{
 		global $link;
 
@@ -79,8 +79,10 @@ class Grid
 		header("Location: ../project.php");
 	}
 	
-	public static function remove()
+	public static function removeGrid()
 	{
+		global $link;
+		
 		// @todo SQL-INYECTION
 		
 		$id = $_POST['id'];
@@ -106,5 +108,59 @@ class Grid
 		}
 		
 		echo '0';
+	}
+	
+	public static function save()
+	{
+		global $link;
+	
+		// @todo SQL-INYECTION
+		
+		$content = $_POST['content']; // get posted data
+		$content = mysqli_real_escape_string($link,$content);	//escape string
+		
+		$type = $_POST['type'];
+		
+		$sql = 'UPDATE gridentries SET content="' . $content .'", type="'. $type .'" WHERE id=' . $_POST['id'];
+		
+		if ($_POST['fontsize'] != "NULL"){
+			$sql = 'UPDATE gridentries SET fontsize="'.$_POST['fontsize'].'" WHERE id=' . $_POST['id'];
+		}
+		
+		mysqli_query($link,$sql);
+	}
+	
+	public static function remove()
+	{
+		global $link;
+	
+		// @todo SQL-INYECTION
+		
+		$id = $_POST['id'];
+		$actualgrid = $_SESSION['gridid'];
+		
+		$t = mysqli_query($link, "DELETE FROM gridentries WHERE id=".$id);
+		
+		if(!$t)
+		{
+			die('Error DELETE: ' . mysqli_error());
+		}
+	}
+	
+	public static function saveInfo()
+	{
+		global $link;
+	
+		self::saveTimestamp();
+		
+		// @todo SQL-INYECTION
+		
+		$value = $_POST['value']; // get posted data
+		$value = mysqli_real_escape_string($link,$value);	//escape string
+		
+		$sql = 'UPDATE grid SET name="' . $value .'", lastchange="' . date("Y-m-d H:i:s") . '" WHERE id='.$_POST['id'] ;
+		
+		mysqli_query($link,$sql);
+		print $_POST['value'];
 	}
 }
