@@ -34,17 +34,13 @@ o888bood8P'   d888b    `Y8bod8P' `Y8bod8P' o888o
 
 Drag and Drool is based on https://github.com/ducksboard/gridster.js, and combines it with PHP and modern
 
-HTML5 technics, to offer a seamless management for your images, texts and quotes, in organized in 2D Boxes.
+HTML5 technics, to offer a seamless management for your images, texts and quotes, in organized 2D Boxes.
 
 ============================================================
                         INSTALLATION
                     (batteries included)
-                    
-Requirements:   MySQl + PHP5
-             
-                Not tested for Internet Explorer support.
 
-
+                Requirements:   MySQl + PHP5
 
     1. Clone the repository onto your webserver.
     2. Import the file draganddrool.sql into one MySQL database.
@@ -58,7 +54,7 @@ All libraries and functions (like CSS Parent Selector) are included.
 I don't have found a license yet. As of now, my code is under the MIT license.
 
 As an addition you HAVE TO call the name of the author, that is me (Eduard Gotwig),
-and point to this Github page. There are also other Github contributors as well present.
+and point to this Github page. There are also other Github contributors present as well.
 
 Please look at the corresponding LICENSE.txt file for other contributors,
 and licenses for the libraries I used.
