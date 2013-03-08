@@ -1,14 +1,9 @@
 <?php
+require_once 'lib/Session.php';
+require_once 'lib/Login.php';
 
-session_start();
-session_name('draganddrool');
-session_set_cookie_params(2*7*24*60*60);
-
-if(!$_SESSION['id']) {
-	header("Location: index.php");
-	echo '<h1>You have to be <a href="index.php">log</a>ged <ahref="index.php">in</a>, to change your user settings.</h1>';
-	}
-
+Session::init();
+Login::checkLoginRedirect();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
