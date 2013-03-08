@@ -1,6 +1,8 @@
 <?php
 require_once 'connect_inc.php';
+require_once '../lib/Grid.php';
+require_once '../lib/Session.php';
 
-$sql_time = 'UPDATE grid SET lastchange="' . date("Y-m-d H:i:s") . '" WHERE id'.$_POST['id'] ;
+Session::init();
 
-mysqli_query($link,$sql_time);
+Grid::saveTimestamp();
