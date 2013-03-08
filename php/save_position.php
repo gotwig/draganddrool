@@ -1,19 +1,5 @@
 <?php
-	include("connect_inc.php");
-	
-	$boxes = $_POST['data'];
-	foreach ($boxes as $box)
-	{
-		$box = array_map('parseInt', $box);
-		$sql = "UPDATE gridentries SET datarow='{$box['row']}' , datacolumn='{$box['col']}' WHERE id='{$box['id']}'";
-		mysqli_query($link,$sql);
-		
-	}
-	
-	function parseInt($v)
-	{
-		return (int) $v;
-	}
-	
-	echo $sql;
-?>
+require_once 'connect_inc.php';
+require_once '../lib/Grid.php';
+
+Grid::savePosition();

@@ -1,9 +1,8 @@
 <?php
-	include("connect_inc.php");
-	
-		session_start();
-	
-	session_name('draganddrool');
+require_once 'connect_inc.php';
+require_once '../lib/Session.php';
+
+Session::init();
 
 	$actualgrid = $_SESSION['gridid']; // get posted data
 
