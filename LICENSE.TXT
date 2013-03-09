@@ -43,6 +43,11 @@ Copyright for the boxes area goes to http://gridster.net/
 Font & icon license info
 
 
+The register icon is part of 
+the Lovely Website Icons Pack 2, by Lazy Crazy and can be found on
+http://lazycrazy.deviantart.com/art/Lovely-website-icons-pack-2-140128830
+
+
 ## Font Awesome
 
    Copyright (C) 2012 by Dave Gandy
