@@ -1,1 +1,0 @@
-{"ts":1362696279611,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"<?php\n\n  $db_server = 'localhost';\n  $db_user   = '';\n  $db_pwd    = '';\n  $db_name   = '';\n\n\n?>\n"]],"start1":0,"start2":0,"length1":0,"length2":97}]],"length":97}
