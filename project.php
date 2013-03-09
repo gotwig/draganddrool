@@ -155,7 +155,7 @@ case "image": content='<li data-id="'+ id + '"><img alt="image content" class="n
 });
     	
     // Editing the Gridname in the loginbar
-   $("#gridname").editable("save_gridinfo.php", {
+   $("#gridname").editable("php/save_gridinfo.php", {
       submitdata : function(value, settings) { return {id: $('#gridname').data('actualgrid')}}, 
       indicator : "<img src='icons/indicator.gif'>",
       tooltip   : "Click to edit",
@@ -169,7 +169,7 @@ case "image": content='<li data-id="'+ id + '"><img alt="image content" class="n
 			var id = $(this).data('gridid');
 
 			$.ajax({
-				url: 'switch_grid.php',
+				url: 'php/switch_grid.php',
 				type: 'POST',
 				data: {
 			id:	id,

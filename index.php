@@ -1,4 +1,6 @@
 <?php
+require_once 'lib/Login.php';
+require_once 'lib/Grid.php';
 require_once 'lib/Session.php';
 require_once 'conf/Config.php';
 
