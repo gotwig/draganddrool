@@ -224,13 +224,12 @@ case "image": content='<li data-id="'+ id + '"><img alt="image content" class="n
 
 $(document).on("click", ".remove_action", function(e){	
 			var id = $(this).parent().data('id');
-			var grid = $('#gridname').data('actualgrid');
 			var gridster = $(".gridster ul").gridster({ widget_margins: [5, 5],
             widget_base_dimensions: [50, 50], serialize_params: function($w, wgd) {
 				return { id: $w.data('id'), col: wgd.col, row: wgd.row, sizex: wgd.sizex, sizey: wgd.sizey };
 			}}).data('gridster');
 
-			gridster.remove_widget( $('#' + id) );
+			gridster.remove_widget($('[data-id="'+id+'"]') );
 			
 			if ($('#'+id+' img').attr('src').match(new RegExp('https://www.filepicker.io/api'))){
 				filepicker.remove($('#'+id+' img').attr('src'), function(){});
@@ -240,8 +239,7 @@ $(document).on("click", ".remove_action", function(e){
 				url: 'php/remove.php',
 				type: 'POST',
 				data: {
-			id:	id,
-            grid: grid
+			id:	id
 				}				
 			});
 
