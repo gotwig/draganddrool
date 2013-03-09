@@ -3,3 +3,5 @@
 .project
 .settings
 /conf/*
+.c9revisions
+.c9revisions/*
