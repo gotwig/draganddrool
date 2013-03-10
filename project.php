@@ -13,7 +13,7 @@ header('Content-type: text/html; charset=utf-8');
 
 if(isset($_GET['logoff']))
 {
-	Session::destroy();
+    Session::destroy();
 }
 
 function plural($num) {
@@ -68,6 +68,17 @@ if ($diff<60)
 
 filepicker.setKey('YOUR FILEPICKER API KEY COMES HERE');
 
+jQuery.fn.css2 = jQuery.fn.css;
+jQuery.fn.css = function() {
+    if (arguments.length) return jQuery.fn.css2.apply(this, arguments);
+    var attr = ['font-size','font-weight'];
+    var len = attr.length, obj = {};
+    var string = '';
+    for (var i = 0; i < len; i++) 
+        var string = string + attr[i] + ':' + jQuery.fn.css2.call(this, attr[i]) + ';';
+    return string;
+}
+
 $(window).load(function(){
 
 $(function(){ //DOM Ready
@@ -109,13 +120,17 @@ $(function(){ //DOM Ready
 
 <script type="text/javascript">
 
-function saveBox(type,id,content, cssstyle){
+function saveBox(type,id,content,cssstyle){
 	
 	
-	if (!cssstyle){
+    if (cssstyle){
+	var cssstyle = $('[data-id="'+id+'"] p').css();
+    }
+	
+
+    if (!cssstyle){
 		cssstyle='NULL';
 	}
-	
 			$.ajax({
 				url: 'php/save.php',
 				type: 'POST',
@@ -149,7 +164,40 @@ case "image": content='<li data-id="'+ id + '"><img alt="image content" class="n
 
 
     $(document).ready(function() {
-    	
+
+function css(a){
+    var sheets = document.styleSheets, o = {};
+    for(var i in sheets) {
+        var rules = sheets[i].rules || sheets[i].cssRules;
+        for(var r in rules) {
+            if(a.is(rules[r].selectorText)) {
+                o = $.extend(o, css2json(rules[r].style), css2json(a.attr('style')));
+            }
+        }
+    }
+    return o;
+}
+
+function css2json(css){
+        var s = {};
+        if(!css) return s;
+        if(css instanceof CSSStyleDeclaration) {
+            for(var i in css) {
+                if((css[i]).toLowerCase) {
+                    s[(css[i]).toLowerCase()] = (css[css[i]]);
+                }
+            }
+        } else if(typeof css == "string") {
+            css = css.split("; ");          
+            for (var i in css) {
+                var l = css[i].split(": ");
+                s[l[0].toLowerCase()] = (l[1]);
+            };
+        }
+        return s;
+    }    	
+
+
     	$('body').delegate('input','focus', function() {
     $(this).attr('maxLength',21);
 });
@@ -196,6 +244,9 @@ case "image": content='<li data-id="'+ id + '"><img alt="image content" class="n
 		var currentFontSizeNum = parseFloat(currentFontSize, 10);
 		var newFontSize = currentFontSizeNum*1.2;
 		$(this).parents().siblings("p").css('font-size', newFontSize);
+
+		saveBox('',$(this).parent().parent().data('id'),'',true);
+
 		return false;
 	});
 	
@@ -205,22 +256,26 @@ case "image": content='<li data-id="'+ id + '"><img alt="image content" class="n
 		var currentFontSizeNum = parseFloat(currentFontSize, 10);
 		var newFontSize = currentFontSizeNum*0.8;
 		$(this).parents().siblings("p").css('font-size', newFontSize);
-		saveBox("",$(this).parents().siblings("p").parent().data('id'),"NULL","font-size:" + newFontSize );
+
+		saveBox('',$(this).parent().parent().data('id'),'',true);	
+
 		return false;
 	});
 	
 	// Make bold
 	$(document).on("click", ".boldFont", function(e){
 		var weight = $(this).parents().siblings("p").css('font-weight');
-		if (weight == 400)
+		if (weight == 400){
 		$(this).parents().siblings("p").css('font-weight', 700)
-		
-		else 
+		}
+		else{
 		$(this).parents().siblings("p").css('font-weight', 400)
-		
+		}
+        
+        saveBox('',$(this).parent().parent().data('id'),'',true);
+
 		return false;
 	});
-	
 
 $(document).on("click", ".remove_action", function(e){	
 			var id = $(this).parent().data('id');
@@ -477,14 +532,14 @@ return $row[0];
 			 
 			 if ($t['type'] == 'text')
 			 {
-				$type='<p style="'.$t['cssstyle'].'"  onkeypress="return (this.textContent.length <= 60)" class="text editable" contentEditable="true">' . $t['content'] . '</p><div class="button_group">	<a href="#" class="gradient button increaseFont">+</a><a href="#" class="gradient button decreaseFont">-</a><a href="#" class="gradient button boldFont">B</a></div>';
+				$type='<p style="' . $t['cssstyle'] . '" onkeypress="return (this.textContent.length <= 60)" class="text editable" contentEditable="true">' . $t['content'] . '</p><div class="button_group">	<a href="#" class="gradient button increaseFont">+</a><a href="#" class="gradient button decreaseFont">-</a><a href="#" class="gradient button boldFont">B</a></div>';
 			 }
 			
 			 if ($t['type'] == 'quote')
 			 {
-				$type='<p style="'.$t['cssstyle'].'" onkeypress="return (this.textContent.length <= 60)" class="quote editable" contentEditable="true" >' . $t['content'] . '</p><div class="button_group">	<a href="#" class="gradient button increaseFont">+</a><a href="#" class="gradient button decreaseFont">-</a><a href="#" class="gradient button boldFont">B</a></div><br />';
+				$type='<p style="' . $t['cssstyle'] . '"  onkeypress="return (this.textContent.length <= 60)" class="quote editable" contentEditable="true" >' . $t['content'] . '</p><div class="button_group">	<a href="#" class="gradient button increaseFont">+</a><a href="#" class="gradient button decreaseFont">-</a><a href="#" class="gradient button boldFont">B</a></div><br />';
 			 }
-			echo ('<li id="' . $t['id'] . '" data-id="' . $t['id'] . '" data-row="' . $t['datarow'].'" data-col="' . $t['datacolumn'] . '" data-sizex="2" data-sizey="2">' . $type);			
+			echo ('<li  data-id="' . $t['id'] . '" data-row="' . $t['datarow'].'" data-col="' . $t['datacolumn'] . '" data-sizex="2" data-sizey="2">' . $type);			
 			
 			echo '<a class="remove_action" data-id="'.$t['id'].'">  <img alt="remove element" class="actionicon" src=icons/delete.png> </a>
 			</li>';
