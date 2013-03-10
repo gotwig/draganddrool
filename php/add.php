@@ -4,35 +4,32 @@ require_once '../lib/Session.php';
 
 Session::init();
 
-	$actualgrid = $_SESSION['gridid']; // get posted data
+    $actualgrid = $_SESSION['gridid']; // get posted data
 
-	
 	$type = $_POST['type']; // get the right type of entry
 	
 	switch($type){
 
 	case 'text':
-    	$sql = "INSERT INTO `gridentries` (`id`, `type`, `content`, `gridtable`, `datarow`, `datacolumn`) VALUES
-('', 'text', 'Click, to add your text content', ".$actualgrid.", 1, 1)";
+    	$sql = "INSERT INTO `gridentries` (`id`, `type`, `content`, `gridtable`, `datarow`, `datacolumn`, `data-sizeX`, `data-sizeY`) VALUES
+('', 'text', 'Click, to add your text content', ".$actualgrid.", 1, 1, 2, 2)";
 	break;
 	
 	case 'quote':
-    	$sql = "INSERT INTO `gridentries` (`id`, `type`, `content`, `gridtable`, `datarow`, `datacolumn`) VALUES
-('', 'quote', 'Click, to enter a quote', ".$actualgrid.", 1, 1)";
+    	$sql = "INSERT INTO `gridentries` (`id`, `type`, `content`, `gridtable`, `datarow`, `datacolumn`, `data-sizeX`, `data-sizeY`) VALUES
+('', 'quote', 'Click, to enter a quote', ".$actualgrid.", 1, 1, 2, 2)";
 
 	break;
 
 	case 'image':
-    	$sql = "INSERT INTO `gridentries` (`id`, `type`, `content`, `gridtable`, `datarow`, `datacolumn`) VALUES
-('', 'image', 'http://c.dart-examples.com/_/rsrc/1338345094325/config/customLogo.gif', ".$actualgrid.", 1, 1)";
+    	$sql = "INSERT INTO `gridentries` (`id`, `type`, `content`, `gridtable`, `datarow`, `datacolumn`, `data-sizeX`, `data-sizeY`) VALUES
+('', 'image', 'http://c.dart-examples.com/_/rsrc/1338345094325/config/customLogo.gif', ".$actualgrid.", 1, 1, 2, 2)";
 	    break;
 	}
 	$t = mysqli_query($link,$sql);
 
     	if ( !$t ) {
        		die('Fehler beim INSERT: ' . mysqli_error($link)); }
-
-	echo (mysqli_insert_id($link));
 
 /*
 

@@ -17,7 +17,7 @@ if(isset($_GET['logoff']))
 }
 
 function plural($num) {
-	if ($num != 1)
+    if ($num != 1)
 		return "s";
 }
 
@@ -539,7 +539,7 @@ return $row[0];
 			 {
 				$type='<p style="' . $t['cssstyle'] . '"  onkeypress="return (this.textContent.length <= 60)" class="quote editable" contentEditable="true" >' . $t['content'] . '</p><div class="button_group">	<a href="#" class="gradient button increaseFont">+</a><a href="#" class="gradient button decreaseFont">-</a><a href="#" class="gradient button boldFont">B</a></div><br />';
 			 }
-			echo ('<li  data-id="' . $t['id'] . '" data-row="' . $t['datarow'].'" data-col="' . $t['datacolumn'] . '" data-sizex="2" data-sizey="2">' . $type);			
+			echo ('<li  data-id="' . $t['id'] . '" data-row="' . $t['datarow'].'" data-col="' . $t['datacolumn'] . '" data-sizex="' . $t['data-sizeX'] . '" data-sizey="' . $t['data-sizeY'] . '">' . $type);			
 			
 			echo '<a class="remove_action" data-id="'.$t['id'].'">  <img alt="remove element" class="actionicon" src=icons/delete.png> </a>
 			</li>';

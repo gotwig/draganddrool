@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `grid` (
   `lastchange` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `ownerid` (`ownerid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=226 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `gridentries` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
@@ -24,9 +24,11 @@ CREATE TABLE IF NOT EXISTS `gridentries` (
   `gridtable` int(255) NOT NULL,
   `datarow` int(11) NOT NULL,
   `datacolumn` int(11) NOT NULL,
+  `data-sizeX` int(11) NOT NULL DEFAULT '2',
+  `data-sizeY` int(11) NOT NULL DEFAULT '2',
   PRIMARY KEY (`id`),
   KEY `gridtable` (`gridtable`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2219 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `login` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -38,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `login` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `lastusedgrid` (`lastusedgrid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 ALTER TABLE `grid`
