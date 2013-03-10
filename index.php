@@ -371,7 +371,6 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 </div> <!--panel -->
 
 <?php
-  require 'php/connect_inc.php';
 
 function db_result($result)
 {
