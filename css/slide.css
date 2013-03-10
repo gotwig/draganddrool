@@ -10,10 +10,57 @@ Script URI: http://web-kreation.com/index.php/tutorials/nice-clean-sliding-login
 Date: March 26, 2009
 Version: 1.0
 
-	The CSS, XHTML and design is released under Creative Common License 3.0:
+    The CSS, XHTML and design is released under Creative Common License 3.0:
 	http://creativecommons.org/licenses/by-sa/3.0/
 
 */ 
+
+/* RESPONSIVE WEBDESIGN */
+@media screen and (max-width: 880px) {
+#panel .content .left { width: initial !important;}
+
+ #panel1{width:initial !important;}
+}
+@media screen and (max-width: 710px) {
+ #panel1{display:none !important;}
+ #logo{display:block !important;position:absolute;}
+}
+
+@media screen and (max-width: 520px) {
+
+#menulabel:before{
+content: "" !important;
+}
+
+#menulabel:after{
+content: "" !important;
+}
+
+#menulabel{
+	margin-top: 16px;
+	width: 1em;
+	display: inline-block;
+	padding-bottom: .2em;
+	border-bottom: .2em solid;
+	border-top: .6em double;
+	border-color: white;
+	cursor: pointer;
+}
+
+#li_last{width: 18px !important;}
+.login{right:3% !important;padding-left:0px;}
+}
+
+@media screen and (max-width: 400px) {
+
+#li_first{display:none !important}
+#menulabel:before{
+        content: "" !important;
+        color: white;
+}
+#li_last{width: 18px ;}
+}
+
 
 /***** clearfix *****/
 .clear {clear: both;height: 0;line-height: 0;}
@@ -26,6 +73,10 @@ Version: 1.0
 .clearfix {height: 1%;}
 .clearfix {display: block;}
 
+#recoverlabel{
+	padding-left: 42px;
+    	padding-top: 10px;
+}
 
 #recoverlabel:before{
 	content: "Forgot your password?";
@@ -204,12 +255,12 @@ display:none;
 }
 
 #menulabel:before{
-	content: "Open ";
+	content: "Open Menu";
 	color: white;
 }
 
 #toggle:checked + #menulabel:before{
-	content: "Close ";
+	content: "Close Menu";
 	color: white;
 }
 

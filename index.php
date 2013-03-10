@@ -11,7 +11,7 @@ header('Content-type: text/html; charset=utf-8');
 
 if($_SESSION['id'] && !isset($_COOKIE['tzRemember']) && !$_SESSION['rememberMe'])
 {
-	// If you are logged in, but you don't have the tzRemember cookie (browser restart)
+    // If you are logged in, but you don't have the tzRemember cookie (browser restart)
 	// and you have not checked the rememberMe checkbox:
 
 	$_SESSION = array();
@@ -265,7 +265,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 <div id="toppanel">
 	<div id="panel">
 		<div class="content clearfix">
-			<div class="left">
+			<div id="panel1" class="left">
 				<a id="logo" href="/project">Drag&amp;<br>Drool</a>
 				<h2>Your files in 2D boxes.</h2>		
 				<p class="grey"><b>Upload, Edit, Manage, Create</b></p>
@@ -278,7 +278,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 			
 			?>
             
-			<div class="left">
+			<div id="panel2" class="left">
 			
 			                      
         <i class="icon-home" style="font-size:200%"></i><h1>Member Login</h1>
@@ -300,7 +300,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
                 
                 <div class="clear"></div>
                 <input id="recoverbox" type="checkbox" name="recoverbox">
-                <label id="recoverlabel" for="recoverbox"></label>
+		<label id="recoverlabel" for="recoverbox"</label>
         </form>
 
 						
@@ -310,7 +310,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 			
 			
 			
-			<div class="left right" id="register">			
+			<div id="panel3" class="left right" id="register">			
 				<!-- Register Form -->
 				<form action="php/add_user.php" method="post">
 					<i class="icon-user-add" style="font-size:200%"></i><h1>Not a member yet?</h1>		
@@ -359,10 +359,10 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 	<div class="tab">
 		<ul class="login">
 	    	<li class="left">&nbsp;</li>
-	        <li>Welcome!</li>
+	        <li>>> Sign In / Sign Up  >> </li>
 			<li id="li_last">
 			<input name="toggle" type="checkbox" id="toggle">
-			<label id="menulabel" for="toggle">Menu</label>
+			<label id="menulabel" for="toggle"></label>
 			</li>
 	    	<li class="right">&nbsp;</li>
 		</ul> 

@@ -399,21 +399,21 @@ $(document).on("click", ".remove_action", function(e){
 <div id="toppanel">
 	<div id="panel">
 		<div class="content clearfix">
-			<div class="left">
+			<div id="panel1" class="left">
 				<a id="logo" href="#">Drag&amp;<br>Drool</a>
 				<h2>Your files in 2D boxes.</h2>		
 				<p class="grey"><b>Upload, Edit, Manage, Create</b></p>
 			</div>
             
             
-			<div class="left">
+			<div id="panel2" class="left">
             
             <h1>Members panel</h1>
             
             <p>What about...</p>
             <a href="settings.php">Changing your Settings<i class="icon-cog"></i></a>
 			<br>
-            <a href="faq.html">Reading <b>F</b>requently-<b>A</b>sked <b>Q</b>uestions</a>
+            <a href="faq.html">Reading the <b>F-A-Q</b></a>
 			<br>
             <a href="mailto:info@draganddrool.tk">Contacting us for help (via mail)</a>
 			<br>
@@ -426,7 +426,7 @@ $(document).on("click", ".remove_action", function(e){
 			
 			
 			
-			<div class="left right">			
+			<div id="panel3" class="left right">			
 				
 					<!-- Overview about grids -->
 				<h1>Grid Overview</h1> | <span id="new_grid">Add a new Grid<i class="icon-plus"></i></span>
@@ -456,7 +456,7 @@ $(document).on("click", ".remove_action", function(e){
     <!-- The tab on top -->	
 	<div class="tab">
 <ul class="login">
-	    	<li class="left">&nbsp;</li>
+	    	<li class="left begin_end">&nbsp;</li>
 	        <li id="li_first"><i style="font-size: 160%" class="icon-user"></i> <?php 
 	        
 	        $sql_gridinfo = mysqli_query($link,'SELECT name FROM grid WHERE id='.$actualgrid);
@@ -469,9 +469,9 @@ $(document).on("click", ".remove_action", function(e){
 			?>
 			<li id="li_last">
 			<input type="checkbox" id="toggle">
-			<label id="menulabel" for="toggle">Menu</label>		
+			<label id="menulabel" for="toggle"></label>		
 			</li>
-	    	<li class="right">&nbsp;</li>
+	    	<li class="right begin_end">&nbsp;</li>
 		</ul> 
 	</div> <!-- / top -->
 	
@@ -506,7 +506,7 @@ return $row[0];
 
 <li id="newactions_li">
 
-<p id="underline_addnewaction">ADD</p>
+<p id="underline_addnewaction">  ADD</p>
 
 <div id="newactions_div">
 <div class="new_action"  data-type="image">
