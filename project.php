@@ -540,7 +540,7 @@ return $row[0];
 			 }
 			echo ('<li  data-id="' . $t['id'] . '" data-row="' . $t['datarow'].'" data-col="' . $t['datacolumn'] . '" data-sizex="' . $t['data-sizeX'] . '" data-sizey="' . $t['data-sizeY'] . '">' . $type);			
 			
-			echo '<a class="remove_action" data-id="'.$t['id'].'">  <img alt="remove element" class="actionicon" src=icons/delete.png> </a>
+			echo '<a class="remove_action">  <img alt="remove element" class="actionicon" src=icons/delete.png> </a>
 			</li>';
 	} 
 
