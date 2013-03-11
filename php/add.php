@@ -6,7 +6,7 @@ Session::init();
 
     $actualgrid = $_SESSION['gridid']; // get posted data
 
-	$type = $_POST['type']; // get the right type of entry
+    $type = $_POST['type']; // get the right type of entry
 	
 	switch($type){
 
@@ -30,6 +30,8 @@ Session::init();
 
     	if ( !$t ) {
        		die('Fehler beim INSERT: ' . mysqli_error($link)); }
+
+echo (mysqli_insert_id($link));
 
 /*
 

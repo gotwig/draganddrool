@@ -12,7 +12,7 @@ header('Content-type: text/html; charset=utf-8');
 if($_SESSION['id'] && !isset($_COOKIE['tzRemember']) && !$_SESSION['rememberMe'])
 {
     // If you are logged in, but you don't have the tzRemember cookie (browser restart)
-	// and you have not checked the rememberMe checkbox:
+    // and you have not checked the rememberMe checkbox:
 
 	$_SESSION = array();
 	session_destroy();
@@ -102,7 +102,6 @@ echo '</script>';
         
         
     <script type='text/javascript' src='jquery/jquery-1.9.0.min.js'></script>
-   	<script type="text/javascript" src="jquery/cssparentselector.js"></script>
   	<script type='text/javascript' src="jquery/jquery.gridster.js"></script> 
   	<script type='text/javascript' src='jquery/jquery.jeditable.mini.js'></script>
         
@@ -269,15 +268,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 				<a id="logo" href="/project">Drag&amp;<br>Drool</a>
 				<h2>Your files in 2D boxes.</h2>		
 				<p class="grey"><b>Upload, Edit, Manage, Create</b></p>
-			</div>
-            
-            
-            <?php
-			
-			if(!$_SESSION['id']):
-			
-			?>
-            
+			</div> 
 			<div id="panel2" class="left">
 			
 			                      
@@ -347,11 +338,6 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 				
 			</div>
             
-            
-            
-            <?php
-			endif;
-			?>
 		</div>
 	</div> <!-- /login -->	
 
@@ -427,6 +413,8 @@ return $row[0];
 
     </ul>
 </div>
+
+   	<script type="text/javascript" src="jquery/cssparentselector.js"></script>
 
 </body>
 

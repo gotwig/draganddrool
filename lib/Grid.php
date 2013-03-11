@@ -1,7 +1,7 @@
 <?php 
 class Grid
 {
-	public static function switchAction()
+    public static function switchAction()
 	{
 		global $link;
 		
