@@ -123,8 +123,8 @@ class Grid
 		
 		$sql = 'UPDATE gridentries SET content="' . $content .'", type="'. $type .'" WHERE id=' . $_POST['id'];
 		
-		if ($_POST['fontsize'] != "NULL"){
-			$sql = 'UPDATE gridentries SET fontsize="'.$_POST['fontsize'].'" WHERE id=' . $_POST['id'];
+		if ($_POST['cssstyle'] != "NULL"){
+			$sql = 'UPDATE gridentries SET cssstyle="'.$_POST['cssstyle'].'" WHERE id=' . $_POST['id'];
 		}
 		
 		mysqli_query($link,$sql);
