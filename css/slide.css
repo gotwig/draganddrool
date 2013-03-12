@@ -108,9 +108,10 @@ content: "" !important;
 }
 
 
-
-
-
+.gridinfo_data2{
+font-size: 85%;
+margin-top:1px
+}
 
 
 /* Check for error */

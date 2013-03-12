@@ -84,7 +84,7 @@ $(function(){ //DOM Ready
     
        $(".gridster ul").gridster({
 			ready: function() {$('#spinner').remove(); $('.gridster').css({opacity: 0.0, visibility: "visible"}).fadeTo(1050, 1.0);
-							
+							if ($("#resizable li").length == 0){ $("#nogridinfo").css('display', 'block');}
 							  },
             widget_margins: [5, 5],
             widget_base_dimensions: [50, 50],
@@ -132,6 +132,8 @@ function saveBox(type,id,content,cssstyle){
 			}
 
 function addBox(type, id)  {
+
+    if ($("#resizable li").length == 0){$("#nogridinfo").css('display', 'none');}
 
 	var dynamicVal = "<?php echo "$actualgrid"; ?>";
 
@@ -332,7 +334,7 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
 				type: 'POST',
 				data: {},
 				success: function (data) {
-	                $('#grid_overview').prepend('<div class="gridlevel"><hr><a class="gridinfo_data" data-gridid="'+data+'" href="#">Put new Gridname here</a><p style="font-size: 85%;margin-top:1px">created just now<i style="color:white;cursor:pointer;font-size:20px;"  class="remove_grid icon-trash"></i></p></div>')
+	                $('#grid_overview').prepend('<div class="gridlevel"><hr><a class="gridinfo_data" data-gridid="'+data+'" href="#">Put new Gridname here</a><p class="gridinfo_data2">created just now<i style="color:white;cursor:pointer;font-size:20px;"  class="remove_grid icon-trash"></i></p></div>')
                 }
 			}); 
 	});
@@ -412,7 +414,7 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
 				
 					<!-- Overview about grids -->
 				<h1>Grid Overview</h1> | <span id="new_grid">Add a new Grid<i class="icon-plus"></i></span>
-                    <div id="grid_overview" style="opacity: 1;">
+                    <div id="grid_overview">
 
 				<?php                    
                    	$sql_gridoverview = mysqli_query($link,'SELECT * FROM grid WHERE ownerid='.$_SESSION['id'].' ORDER BY lastchange DESC');
@@ -420,7 +422,7 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
                     while($t = mysqli_fetch_array($sql_gridoverview)){
                     
                     echo ('
-                 	<div class="gridlevel"><hr><a class="gridinfo_data" data-gridid="'.$t['id'].'" href="#">'.$t['name'].'</a><p style="font-size: 85%;margin-top:1px">modified '.relative_time($t['lastchange']).'<i style="color:white;cursor:pointer;font-size:20px;" class="remove_grid icon-trash"></i></p></div>');	
+                 	<div class="gridlevel"><hr><a class="gridinfo_data" data-gridid="'.$t['id'].'" href="#">'.$t['name'].'</a><p class="gridinfo_data2">modified '.relative_time($t['lastchange']).'<i style="color:white;cursor:pointer;font-size:20px;" class="remove_grid icon-trash"></i></p></div>');	
                     }
 				
 					?>
@@ -439,7 +441,7 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
 	<div class="tab">
 <ul class="login">
 	    	<li class="left begin_end">&nbsp;</li>
-	        <li id="li_first"><i style="font-size: 160%" class="icon-user"></i> <?php 
+	        <li id="li_first"><i class="icon-user"></i> <?php 
 	        
 	        $sql_gridinfo = mysqli_query($link,'SELECT name FROM grid WHERE id='.$actualgrid);
 
@@ -447,7 +449,7 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
 	        $t = db_result($sql_gridinfo);
 	        
 	        echo $_SESSION['usr'].'</li>
-			<li> <b><span id="gridname" data-actualgrid="'.$actualgrid.'" id="'.$actualgrid.'" class="click editable" title="Click to edit the name of your grid" style="opacity: 1; visibility: visible;">'.$t.'</span></b></li>';
+			<li> <b><span id="gridname" data-actualgrid="'.$actualgrid.'" id="'.$actualgrid.'" class="click editable" title="Click to edit the name of your grid">'.$t.'</span></b></li>';
 			?>
 			<li id="li_last">
 			<input type="checkbox" id="toggle">
@@ -503,6 +505,10 @@ return $row[0];
  	
 	<div class="gridster">
 	
+    <li id="nogridinfo">
+<h3 id="nogridinfo_title">You have no boxes.</h3><p id="nogridinfo_content">
+<i class="icon-emo-thumbsup"></i>Add a box from <br> the bar at your left</p></li>
+    
     	<ul id="resizable">';
 	 
 	while($t = mysqli_fetch_array($sql_gridentries))
