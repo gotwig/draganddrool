@@ -18,7 +18,7 @@ if(isset($_GET['logoff']))
 
 function plural($num) {
     if ($num != 1)
-    	return "s";
+        return "s";
 }
 
 function relative_time($date) {
@@ -90,28 +90,17 @@ $(function(){ //DOM Ready
             widget_base_dimensions: [50, 50],
 			serialize_params: function($w, wgd) {
 				return { id: $w.data('id'), col: wgd.col, row: wgd.row, sizex: wgd.sizex, sizey: wgd.sizey };
-			}
+				},
+            draggable: {
+                stop: function(event, ui){ 
+					$.post('php/save_position.php', {data: this.serialize()}, function(ret) {
+						//your callback
+					});
+				}
+            }
         });
 
-    var gridster = $(".gridster ul").gridster().data('gridster');
-
-    /*
-    gridster.disable( );
-
-    $("li").resizable({
-        grid: 50,
-        handles:"all",
-        minHeight:50,
-        minWidth:50,
-        // Xhelper: "outline",  Xanimate:true
-        stop: function(event,ui) {
-            gridster.enable();
-        },
-        start: function(event,ui) {
-            gridster.disable();
-        }
-    });
-    */
+    gridster = $(".gridster ul").gridster().data('gridster');
 });  
          
 });//]]>
@@ -143,7 +132,7 @@ function saveBox(type,id,content,cssstyle){
 			}
 
 function addBox(type, id)  {
-	var gridster = $(".gridster ul").gridster().data("gridster");
+
 	var dynamicVal = "<?php echo "$actualgrid"; ?>";
 
 	switch (type)	{
@@ -278,15 +267,11 @@ function css2json(css){
 
 $(document).on("click", ".remove_action", function(e){	
 			var id = $(this).parent().data('id');
-			var gridster = $(".gridster ul").gridster({ widget_margins: [5, 5],
-            widget_base_dimensions: [50, 50], serialize_params: function($w, wgd) {
-				return { id: $w.data('id'), col: wgd.col, row: wgd.row, sizex: wgd.sizex, sizey: wgd.sizey };
-			}}).data('gridster');
 
 			gridster.remove_widget($('[data-id="'+id+'"]') );
 			
 			if ($('[data-id="'+id+'"] img').attr('src').match(new RegExp('https://www.filepicker.io/api'))){
-				filepicker.remove($('#'+id+' img').attr('src'), function(){});
+				filepicker.remove($('[data-id="'+id+'"] img').attr('src'), function(){});
   			}
 
 			$.ajax({
@@ -294,16 +279,16 @@ $(document).on("click", ".remove_action", function(e){
 				type: 'POST',
 				data: {
 			id:	id
-				}				
-			});
+				},
+                                success: function (data) {
+$.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
+                                                //your callback
+                        });                }
+                        });
 
-
-			$.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
-						//your callback
-			});
 
 		});
-		
+
 		$(document).on("click", ".image", function(e){	
     	var instance = this;
 		this.id = $(this).parent().data('id');
@@ -326,13 +311,11 @@ $(document).on("click", ".remove_action", function(e){
 		
 
 		$(".new_action").click(function (e) {	
-			var id = $('#gridname').data('actualgrid')
 			var type = $(this).data('type');
 	 		$.ajax({
 				url: 'php/add.php',
 				type: 'POST',
 				data: {
-		id:	id,
                 type: type
 				},
 				success: function (data) {
