@@ -97,6 +97,7 @@ background-size: cover;
 
 
 #nogridinfo{
+    display:none;
     width: 238px;
 }
 
