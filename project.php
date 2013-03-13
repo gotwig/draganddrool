@@ -512,7 +512,7 @@ return $row[0];
     	<ul id="resizable">';
 	 
 	while($t = mysqli_fetch_array($sql_gridentries))
-	{		 
+	{
 			 if ($t['type'] == 'image')
 			 {
 				$type='<img alt="image content" class="image" src="' . $t['content'] . '"/>';

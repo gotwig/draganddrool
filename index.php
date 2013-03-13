@@ -128,25 +128,7 @@ $(function(){ //DOM Ready
 			}
         });
 
-    var gridster = $(".gridster ul").gridster().data('gridster');
-
-    /*
-    gridster.disable( );
-
-    $("li").resizable({
-        grid: 50,
-        handles:"all",
-        minHeight:50,
-        minWidth:50,
-        // Xhelper: "outline",  Xanimate:true
-        stop: function(event,ui) {
-            gridster.enable();
-        },
-        start: function(event,ui) {
-            gridster.disable();
-        }
-    });
-    */
+    gridster = $(".gridster ul").gridster().data('gridster');
 });  
          
 });//]]>
@@ -155,7 +137,6 @@ $(function(){ //DOM Ready
 <script type="text/javascript">
 
 function addBox(type, id)  {
-	var gridster = $(".gridster ul").gridster().data("gridster");
 	var dynamicVal = "<?php echo "$actualgrid"; ?>";
 
 	if ($('#nogridinfo')){
@@ -225,10 +206,6 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 			$(document).on("click", ".remove_action", function(e){	
 			var id = $(this).data('id')
 			var grid = $('#gridname').data('actualgrid')
-			var gridster = $(".gridster ul").gridster({ widget_margins: [5, 5],
-            widget_base_dimensions: [50, 50], serialize_params: function($w, wgd) {
-				return { id: $w.prop('id'), col: wgd.col, row: wgd.row, sizex: wgd.sizex, sizey: wgd.sizey };
-			}}).data('gridster');
 
 			gridster.remove_widget( $('#' + id) );
 
@@ -272,7 +249,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 			<div id="panel2" class="left">
 			
 			                      
-        <i class="icon-home" style="font-size:200%"></i><h1>Member Login</h1>
+        <i class="icon-home"></i><h1>Member Login</h1>
                 		<div id="recover">
                 <label class="grey" for="recovermail">Your existing E-Mail adress:</label>
                 <input id="recovermail" class="field" type="password" name="password" size="23">
@@ -281,14 +258,9 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
                 <input tabindex="1" class="field" type="text" name="username" id="username" value="" size="23">
                 <input tabindex="3" alt="Login" type="image" src="icons/login/login_white.png" name="submit" value="Login" class="bt_login" >
                 <input type="hidden" name="submit" value="Login">
-                <label style="display:none;" id="remembermelabel" for="rememberMe">Remember</label>
                 <input tabindex="2" class="field" type="password" name="password" id="password" size="23">
                 
-				<input title="Check to remember password" name="rememberMe" id="rememberMe" type="checkbox" value="1" checked="checked" style="
-    margin-top: 8px;
-    margin-left: -2px;
-">
-                
+				<input title="Check to remember password" name="rememberMe" id="rememberMe" type="checkbox" value="1" checked="checked">
                 <div class="clear"></div>
                 <input id="recoverbox" type="checkbox" name="recoverbox">
 		<label id="recoverlabel" for="recoverbox"</label>
@@ -304,7 +276,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 			<div id="panel3" class="left right" id="register">			
 				<!-- Register Form -->
 				<form action="php/add_user.php" method="post">
-					<i class="icon-user-add" style="font-size:200%"></i><h1>Not a member yet?</h1>		
+					<i class="icon-user-add"></i><h1>Not a member yet?</h1>		
                      <?php
 						
 						if($_SESSION['msg']['reg-err'])
@@ -322,18 +294,11 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
                                         		
 					<label class="grey" for="new_email">E-Mail:</label>
 					<input class="field" type="email" name="new_email" id="new_email" value="" maxlength="28" size="23">
-					<label class="grey" for="new_username" style="
-    width: 111px;
-">Username:</label>
-					<label class="grey" for="new_password" style="
-    width: 111px;
-">Password:</label><input class="field" type="text" name="new_username" id="new_username" size="23" maxlength="14" style="
-    width: 89px;
-">
+					<label class="grey new_username_password_label" for="new_username">Username:</label>
+					<label class="grey new_username_password_label" for="new_password">Password:</label><input class="field" type="text" name="new_username" id="new_username" size="23" maxlength="14">
 					
-					<input class="field" type="password" name="new_password" id="new_password" size="23" maxlength="20" style="
-    width: 89px;
-"><input style="margin-top:2px" type="submit" name="submit" value="Sign up for free" class="bt_register">
+					<input class="field" type="password" name="new_password" id="new_password" size="23" maxlength="20">
+                    <input type="submit" name="submit" value="Sign up for free" id="bt_register">
 				</form>
 				
 			</div>
@@ -386,27 +351,27 @@ return $row[0];
 	
     	<ul id="resizable">';
 	 
-	while($t = mysqli_fetch_array($sql_gridentries))
-	{		 
+    while($t = mysqli_fetch_array($sql_gridentries))
+	{
 			 if ($t['type'] == 'image')
 			 {
-				$type='<img data-content-id="'.$t['id'].'" alt="image content" class="image" src="' . $t['content'] . '"/>';
+				$type='<img alt="image content" class="image" src="' . $t['content'] . '"/>';
 			 }
 			 
 			 if ($t['type'] == 'text')
 			 {
-				$type='<p data-content-id="'.$t['id'].'" onkeypress="return (this.textContent.length <= 60)" class="text editable" contentEditable="true">' . $t['content'] . '</p><div class="button_group">	<a href="#" class="gradient button increaseFont">+</a><a href="#" class="gradient button decreaseFont">-</a><a href="#" class="gradient button boldFont">B</a></div>';
+				$type='<p style="' . $t['cssstyle'] . '" onkeypress="return (this.textContent.length <= 60)" class="text editable" contentEditable="true">' . $t['content'] . '</p><div class="button_group">	<a href="#" class="gradient button increaseFont">+</a><a href="#" class="gradient button decreaseFont">-</a><a href="#" class="gradient button boldFont">B</a></div>';
 			 }
 			
 			 if ($t['type'] == 'quote')
 			 {
-				$type='<p data-content-id="'.$t['id'].'" onkeypress="return (this.textContent.length <= 60)" class="quote editable" contentEditable="true" >' . $t['content'] . '</p><div class="button_group">	<a href="#" class="gradient button increaseFont">+</a><a href="#" class="gradient button decreaseFont">-</a><a href="#" class="gradient button boldFont">B</a></div><br />';
+				$type='<p style="' . $t['cssstyle'] . '"  onkeypress="return (this.textContent.length <= 60)" class="quote editable" contentEditable="true" >' . $t['content'] . '</p><div class="button_group">	<a href="#" class="gradient button increaseFont">+</a><a href="#" class="gradient button decreaseFont">-</a><a href="#" class="gradient button boldFont">B</a></div><br />';
 			 }
-			echo ('<li id="' . $t['id'] . '" data-row="' . $t['datarow'].'" data-col="' . $t['datacolumn'] . '" data-sizex="2" data-sizey="2">' . $type);			
+			echo ('<li  data-id="' . $t['id'] . '" data-row="' . $t['datarow'].'" data-col="' . $t['datacolumn'] . '" data-sizex="' . $t['data-sizeX'] . '" data-sizey="' . $t['data-sizeY'] . '">' . $type);			
 			
-			echo '<a class="remove_action" data-id="'.$t['id'].'">  <img alt="remove element" class="actionicon" src=icons/delete.png> </a>
+			echo '<a class="remove_action">  <img alt="remove element" class="actionicon" src=icons/delete.png> </a>
 			</li>';
-	} 
+	}
 
 
 ?>

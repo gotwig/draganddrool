@@ -70,6 +70,10 @@
     font-size:160%;
 }
 
+.icon-user-add, .icon-add{
+font-size:200%
+}
+
 .icon-trash{
     color:white;
     cursor:pointer;
@@ -81,6 +85,8 @@
     right: 99px;
     top: -26px;
 }
+
+
 
 body {
   padding: 1em;

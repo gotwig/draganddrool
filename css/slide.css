@@ -83,9 +83,19 @@ content: "" !important;
 	color: white;
 }
 
+.new_username_label{
+    width: 111px;
+}
+
+#new_username, #new_password{
+    width: 89px;
+}
+
 #new_grid{
 	cursor: pointer;
 }
+
+
 
 
 #recover{display:none;}
@@ -208,6 +218,7 @@ margin-top:1px
 position: absolute;
 text-align: right;
 font-size: 90%;
+
 }
 
 #remembermelabel{
@@ -366,7 +377,7 @@ background-position: 148px;}
 /* BUTTONS */
 /* Login and Register buttons */
 #panel .content input.bt_login,
-#panel .content input.bt_register {
+#panel .content input#bt_register {
 	display: block;
 	float: left;
 	clear: left;
@@ -381,10 +392,14 @@ background-position: 148px;}
 
 
 
-#panel .content input.bt_register {
+#panel .content input#bt_register {
 	width: 110px;
 	color: white;
 	background: transparent url(../icons/signup_free.png) no-repeat 0 0;
+}
+
+#bt_register{
+    margin-top:2px
 }
 
 #panel .lost-pwd {
