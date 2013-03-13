@@ -11,7 +11,7 @@ Date: March 26, 2009
 Version: 1.0
 
     The CSS, XHTML and design is released under Creative Common License 3.0:
-	http://creativecommons.org/licenses/by-sa/3.0/
+    http://creativecommons.org/licenses/by-sa/3.0/
 
 */ 
 
@@ -83,12 +83,16 @@ content: "" !important;
 	color: white;
 }
 
-.new_username_label{
-    width: 111px;
+.new_username_password_label{
+    width: 111px !important;
 }
 
-#new_username, #new_password{
-    width: 89px;
+#new_username{
+    width: 89px !important;
+}
+
+#new_password{
+    width: 89px !important;
 }
 
 #new_grid{
@@ -399,7 +403,7 @@ background-position: 148px;}
 }
 
 #bt_register{
-    margin-top:2px
+    margin-top:2px !important;
 }
 
 #panel .lost-pwd {

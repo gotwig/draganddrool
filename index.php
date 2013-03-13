@@ -14,7 +14,7 @@ if($_SESSION['id'] && !isset($_COOKIE['tzRemember']) && !$_SESSION['rememberMe']
     // If you are logged in, but you don't have the tzRemember cookie (browser restart)
     // and you have not checked the rememberMe checkbox:
 
-	$_SESSION = array();
+    $_SESSION = array();
 	session_destroy();
 
 	// Destroy the session
