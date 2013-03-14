@@ -39,6 +39,7 @@
 /* Animation center compensation - magrins should be symmetric */
 /* remove if not needed */
   margin-left: 0.2em;
+  white-space:nowrap !important;
 /* you can be more comfortable with increased icons size */
 /* font-size: 120%; */
 /* Uncomment for 3D effect */
@@ -125,8 +126,6 @@ background-size: cover;
 a { color: #000; }
 a:hover { color: #000; text-decoration: none; }
 
-::selection { background: #fd0; }
-
 .button { color: #000; text-decoration: none; font-size: 0.8em; font-weight: 700; padding: 5px 10px; float: left; display: block; overflow: hidden; }
 
 .reset { background: #fff; }
@@ -138,7 +137,7 @@ a:hover { color: #000; text-decoration: none; }
     -moz-transition: opacity .3s, left .3s, top .3s;
     -o-transition: opacity .3s, left .3s, top .3s;
     transition: opacity .3s, left .3s, top .3s;
- 	
+     
  	    opacity: 1;
     height: auto;
  	}
@@ -181,7 +180,6 @@ background: -webkit-linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* Chrome10+,
 background: -o-linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* Opera 11.10+ */
 background: -ms-linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* IE10+ */
 background: linear-gradient(to bottom, #eeeeee 0%,#dddddd 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */ 
 }
 
 .light { 
@@ -191,7 +189,6 @@ background: -webkit-linear-gradient(top, #fafafa 0%,#ffffff 100%); /* Chrome10+,
 background: -o-linear-gradient(top, #fafafa 0%,#ffffff 100%); /* Opera 11.10+ */
 background: -ms-linear-gradient(top, #fafafa 0%,#ffffff 100%); /* IE10+ */
 background: linear-gradient(to bottom, #fafafa 0%,#ffffff 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */ 
 }
 
 
@@ -410,10 +407,15 @@ list-style-type: none;
 	position:absolute;
 	font-size: 14px;
 	width:220px;
+	transform-origin:84px 70px
 	-webkit-transform-origin:84px 70px;
-    transform-origin:84px 70px;
+	-moz-transform-origin:84px 70px;
+	-ms-transform-origin:84px 70px;
     display:inline-block;
+    transform:rotate(-90deg);
     -webkit-transform:rotate(-90deg);
+    -moz-transform:rotate(-90deg);
+    -ms-transform:rotate(-90deg);
     text-align:center;
 	font-family: 'airborneregular';
 	font-style: italic;

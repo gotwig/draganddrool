@@ -204,10 +204,9 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 	
 
 			$(document).on("click", ".remove_action", function(e){	
-			var id = $(this).data('id')
-			var grid = $('#gridname').data('actualgrid')
+			var id = $(this).parent().data('id');
 
-			gridster.remove_widget( $('#' + id) );
+			gridster.remove_widget($('[data-id="'+id+'"]') );
 
 		});
 		
@@ -249,7 +248,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 			<div id="panel2" class="left">
 			
 			                      
-        <i class="icon-home"></i><h1>Member Login</h1>
+        <h1 class="icon-home">Member Login</h1>
                 		<div id="recover">
                 <label class="grey" for="recovermail">Your existing E-Mail adress:</label>
                 <input id="recovermail" class="field" type="password" name="password" size="23">
@@ -263,7 +262,6 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 				<input title="Check to remember password" name="rememberMe" id="rememberMe" type="checkbox" value="1" checked="checked">
                 <div class="clear"></div>
                 <input id="recoverbox" type="checkbox" name="recoverbox">
-		<label id="recoverlabel" for="recoverbox"</label>
         </form>
 
 						
@@ -273,10 +271,10 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 			
 			
 			
-			<div id="panel3" class="left right" id="register">			
+			<div  class="left right" id="register">			
 				<!-- Register Form -->
 				<form action="php/add_user.php" method="post">
-					<i class="icon-user-add"></i><h1>Not a member yet?</h1>		
+					<h1 class="icon-user-add">Not a member yet?</h1>		
                      <?php
 						
 						if($_SESSION['msg']['reg-err'])

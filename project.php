@@ -83,7 +83,7 @@ $(window).load(function(){
 $(function(){ //DOM Ready
     
        $(".gridster ul").gridster({
-			ready: function() {$('#spinner').remove(); $('.gridster').css({opacity: 0.0, visibility: "visible"}).fadeTo(1050, 1.0);
+    		ready: function() {$('#spinner').remove(); $('.gridster').css({opacity: 0.0, visibility: "visible"}).fadeTo(1050, 1.0);
 							if ($("#resizable li").length == 0){ $("#nogridinfo").css('display', 'block');}
 							  },
             widget_margins: [5, 5],
@@ -92,7 +92,12 @@ $(function(){ //DOM Ready
 				return { id: $w.data('id'), col: wgd.col, row: wgd.row, sizex: wgd.sizex, sizey: wgd.sizey };
 				},
             draggable: {
-                stop: function(event, ui){ 
+            	start: function(event, ui) {
+
+            	dragged = 1;
+        	},
+            	
+                stop: function(event, ui){
 					$.post('php/save_position.php', {data: this.serialize()}, function(ret) {
 						//your callback
 					});
@@ -291,7 +296,10 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
 
 		});
 
-		$(document).on("click", ".image", function(e){	
+		$(document).on("click", ".image", function(e){
+			
+		if(!dragged){	
+		
     	var instance = this;
 		this.id = $(this).parent().data('id');
 		this.src = $(this).attr('src');
@@ -309,6 +317,11 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
   		 instance.src=FPFile.url;
   		 saveBox('image',instance.id,FPFile.url);
   		})
+  		
+		}
+  		
+  		dragged = 0;
+  		
 		});
 		
 
@@ -380,6 +393,8 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
 <img id="spinner" alt="Loading Boxes..." src="icons/image_381811.gif" />
 
 <!-- Panel -->
+<style>#forkongithub a{background:rgba(39, 39, 39, 0.972549);color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#060;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:100px){#forkongithub{position:absolute;display:block;top:0;left:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;left:-60px;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);box-shadow:4px 2px 8px rgba(0,0,0,0.8);}}</style><span style="z-index:3" id="forkongithub"><a href="https://github.com/gotwig/draganddrool">Fork me on GitHub</a></span>
+
 <div id="toppanel">
 	<div id="panel">
 		<div class="content clearfix">
@@ -413,7 +428,7 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
 			<div id="panel3" class="left right">			
 				
 					<!-- Overview about grids -->
-				<h1>Grid Overview</h1> | <span id="new_grid">Add a new Grid<i class="icon-plus"></i></span>
+				<h1>Grid Overview</h1> | <span class="icon-plus" id="new_grid">Add a new Grid</span>
                     <div id="grid_overview">
 
 				<?php                    
@@ -502,7 +517,7 @@ return $row[0];
 </div>
 </li>
 </ul>
- 	
+
 	<div class="gridster">
 	
     <li id="nogridinfo">
@@ -512,7 +527,7 @@ return $row[0];
     	<ul id="resizable">';
 	 
 	while($t = mysqli_fetch_array($sql_gridentries))
-	{
+	{		 
 			 if ($t['type'] == 'image')
 			 {
 				$type='<img alt="image content" class="image" src="' . $t['content'] . '"/>';
