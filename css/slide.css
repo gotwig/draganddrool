@@ -156,6 +156,7 @@ margin-top:1px
   	color: white;
   	font-size: 12px;
 	text-align: center;
+	bottom: 183px;
 }
 
 .tab ul.login li.left {
@@ -189,7 +190,7 @@ margin-top:1px
 
 
 #li_last {
- 	width: 76px;
+ 	width: 30px;
 }
 
 
@@ -261,12 +262,7 @@ display:none;
 }
 
 #menulabel:before{
-	content: "Open Menu";
-	color: white;
-}
-
-#toggle:checked + #menulabel:before{
-	content: "Close Menu";
+	content: "Menu";
 	color: white;
 }
 

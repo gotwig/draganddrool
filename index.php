@@ -237,8 +237,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 
 <!-- Panel -->
 
-<div id="toppanel">
-	<div id="panel">
+	<div class="meny" id="panel">
 		<div class="content clearfix">
 			<div id="panel1" class="left">
 				<a id="logo" href="/project">Drag&amp;<br>Drool</a>
@@ -308,7 +307,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 	<div class="tab">
 		<ul class="login">
 	    	<li class="left">&nbsp;</li>
-	        <li>>> Sign In / Sign Up  >> </li>
+	        <li>click to <i>Sign In / Sign Up</i></li>
 			<li id="li_last">
 			<input name="toggle" type="checkbox" id="toggle">
 			<label id="menulabel" for="toggle"></label>
@@ -345,7 +344,7 @@ return $row[0];
 
  	echo '<div id="status"></div>
  	
-	<div class="gridster">
+	<div class="gridster contents">
 	
     	<ul id="resizable">';
 	 
@@ -377,8 +376,50 @@ return $row[0];
     </ul>
 </div>
 
-   	<script type="text/javascript" src="jquery/cssparentselector.js"></script>
+        <script src="jquery/jquery.meny.min.js"></script>
 
+<script>
+                        // Create an instance of Meny
+                        var meny = Meny.create({
+                                // The element that will be animated in from off screen
+                                menuElement: document.querySelector( '.meny' ),
+
+                                // The contents that gets pushed aside while Meny is active
+                                contentsElement: document.querySelector( '.contents' ),
+
+                                // [optional] The alignment of the menu (top/right/bottom/left)
+                                position: Meny.getQuery().p || 'top',
+
+                                // [optional] The height of the menu (when using top/bottom position)
+                                height: 190,
+
+                                // [optional] The width of the menu (when using left/right position)
+                                width: 260,
+
+                                // [optional] Distance from mouse (in pixels) w-1en menu should open
+                                threshold: 20
+                        });
+
+                        // API Methods:
+                        // meny.open();
+                        // meny.close();
+                        // meny.isOpen();
+
+                        // Events:
+                        meny.addEventListener( 'open', function(){ $('.login').animate({"bottom": "-1px"}, 510) } );
+                        meny.addEventListener( 'close', function(){ $('.login').animate({"bottom": "183px"}, 310) } );
+
+                        // Embed an iframe if a URL is passed in
+                        if( Meny.getQuery().u && Meny.getQuery().u.match( /^http/gi ) ) {
+                                var contents = document.querySelector( '.contents' );
+                                contents.style.padding = '0px';
+                                contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
+                        }
+                        $("#menulabel").click(function (e) {	
+			meny.open();				
+			});  
+
+                </script>
 </body>
 
 

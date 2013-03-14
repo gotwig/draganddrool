@@ -393,10 +393,8 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
 <img id="spinner" alt="Loading Boxes..." src="icons/image_381811.gif" />
 
 <!-- Panel -->
-<style>#forkongithub a{background:rgba(39, 39, 39, 0.972549);color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#060;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:100px){#forkongithub{position:absolute;display:block;top:0;left:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;left:-60px;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);box-shadow:4px 2px 8px rgba(0,0,0,0.8);}}</style><span style="z-index:3" id="forkongithub"><a href="https://github.com/gotwig/draganddrool">Fork me on GitHub</a></span>
 
-<div id="toppanel">
-	<div id="panel">
+	<div class="meny" id="panel">
 		<div class="content clearfix">
 			<div id="panel1" class="left">
 				<a id="logo" href="#">Drag&amp;<br>Drool</a>
@@ -518,7 +516,7 @@ return $row[0];
 </li>
 </ul>
 
-	<div class="gridster">
+	<div class="gridster contents">
 	
     <li id="nogridinfo">
 <h3 id="nogridinfo_title">You have no boxes.</h3><p id="nogridinfo_content">
@@ -555,9 +553,50 @@ return $row[0];
 </div>
 
 
+        <script src="jquery/jquery.meny.min.js"></script>
 
-   	<script type="text/javascript" src="jquery/cssparentselector.js"></script>
+<script>
+                        // Create an instance of Meny
+                        var meny = Meny.create({
+                                // The element that will be animated in from off screen
+                                menuElement: document.querySelector( '.meny' ),
 
+                                // The contents that gets pushed aside while Meny is active
+                                contentsElement: document.querySelector( '.contents' ),
+
+                                // [optional] The alignment of the menu (top/right/bottom/left)
+                                position: Meny.getQuery().p || 'top',
+
+                                // [optional] The height of the menu (when using top/bottom position)
+                                height: 190,
+
+                                // [optional] The width of the menu (when using left/right position)
+                                width: 260,
+
+                                // [optional] Distance from mouse (in pixels) w-1en menu should open
+                                threshold: 20
+                        });
+
+                        // API Methods:
+                        // meny.open();
+                        // meny.close();
+                        // meny.isOpen();
+
+                        // Events:
+                        meny.addEventListener( 'open', function(){ $('.login').animate({"bottom": "-1px"}, 510) } );
+                        meny.addEventListener( 'close', function(){ $('.login').animate({"bottom": "183px"}, 310) } );
+
+                        // Embed an iframe if a URL is passed in
+                        if( Meny.getQuery().u && Meny.getQuery().u.match( /^http/gi ) ) {
+                                var contents = document.querySelector( '.contents' );
+                                contents.style.padding = '0px';
+                                contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
+                        }
+                        	  		$("#menulabel").click(function (e) {	
+			meny.open();				
+			});  		
+                        
+                </script>
 </body>
 
 
