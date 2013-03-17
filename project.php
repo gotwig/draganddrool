@@ -11,6 +11,13 @@ Login::checkLoginRedirect();
 
 header('Content-type: text/html; charset=utf-8');
 
+$ownerid=$_SESSION['id'];
+
+if ($_SESSION['rememberMe']==0)
+{
+unset( $_SESSION['id'] );
+}
+
 if(isset($_GET['logoff']))
 {
     Session::destroy();
@@ -24,7 +31,7 @@ function plural($num) {
 function relative_time($date) {
 $diff = time() - strtotime($date);
 if ($diff<60)
-		return $diff . " second" . plural($diff) . " ago";
+    	return $diff . " second" . plural($diff) . " ago";
 	$diff = round($diff/60);
 	if ($diff<60)
 		return $diff . " minute" . plural($diff) . " ago";
@@ -65,7 +72,7 @@ if ($diff<60)
         <script type="text/javascript">
 (function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document); 
 
-filepicker.setKey('Put your filepicker API key here');
+filepicker.setKey('Put your Filepicker.IO API key here');
 
 jQuery.fn.css2 = jQuery.fn.css;
 jQuery.fn.css = function() {
@@ -83,8 +90,8 @@ $(window).load(function(){
 $(function(){ //DOM Ready
     
        $(".gridster ul").gridster({
-    		ready: function() {$('#spinner').remove(); $('.gridster').css({opacity: 0.0, visibility: "visible"}).fadeTo(1050, 1.0);
-							if ($("#resizable li").length == 0){ $("#nogridinfo").css('display', 'block');}
+			ready: function() {$('#spinner').remove(); $('.gridster').css({opacity: 0.0, visibility: "visible"}).fadeTo(1050, 1.0);
+							if ($("#resizable li").length == 0){ $("#infobox").css('display', 'block');}
 							  },
             widget_margins: [5, 5],
             widget_base_dimensions: [50, 50],
@@ -138,7 +145,7 @@ function saveBox(type,id,content,cssstyle){
 
 function addBox(type, id)  {
 
-    if ($("#resizable li").length == 0){$("#nogridinfo").css('display', 'none');}
+    if ($("#resizable li").length == 0){$("#infobox").css('display', 'none');}
 
 	var dynamicVal = "<?php echo "$actualgrid"; ?>";
 
@@ -430,7 +437,7 @@ $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
                     <div id="grid_overview">
 
 				<?php                    
-                   	$sql_gridoverview = mysqli_query($link,'SELECT * FROM grid WHERE ownerid='.$_SESSION['id'].' ORDER BY lastchange DESC');
+                   	$sql_gridoverview = mysqli_query($link,'SELECT * FROM grid WHERE ownerid='.$ownerid.' ORDER BY lastchange DESC');
                     
                     while($t = mysqli_fetch_array($sql_gridoverview)){
                     
@@ -518,8 +525,8 @@ return $row[0];
 
 	<div class="gridster contents">
 	
-    <li id="nogridinfo">
-<h3 id="nogridinfo_title">You have no boxes.</h3><p id="nogridinfo_content">
+    <li id="infobox">
+<h3 id="infobox_title">You have no boxes.</h3><p id="nogrid_info">
 <i class="icon-emo-thumbsup"></i>Add a box from <br> the bar at your left</p></li>
     
     	<ul id="resizable">';
@@ -553,7 +560,7 @@ return $row[0];
 </div>
 
 
-        <script src="jquery/jquery.meny.min.js"></script>
+        <script src="jquery/meny.min.js"></script>
 
 <script>
                         // Create an instance of Meny

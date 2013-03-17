@@ -24,14 +24,7 @@ if($_POST['submit']=='Login')
 {
 	// Checking whether the Login form has been submitted
 
-	$err = array();
-	// Will hold our errors
 
-	if(!$_POST['username'] || !$_POST['password'])
-		$err[] = 'All the fields must be filled in!';
-
-	if(!count($err))
-	{
 		$_POST['username'] = mysqli_real_escape_string($link, $_POST['username']);
 		$_POST['password'] = mysqli_real_escape_string($link, $_POST['password']);
 		$_POST['rememberMe'] = (int)$_POST['rememberMe'];
@@ -50,12 +43,12 @@ if($_POST['submit']=='Login')
 			
 			// If everything is OK login
 
+
 			$_SESSION['usr']=$row['name'];
 			$_SESSION['id'] = $row['id'];
 			$_SESSION['rememberMe'] = $_POST['rememberMe'];
 			$_SESSION['gridid'] = $row['lastusedgrid'];
 
-			
 			// Store some data in the session
 
 			setcookie('tzRemember',$_POST['rememberMe']);
@@ -63,10 +56,13 @@ if($_POST['submit']=='Login')
 			header("Location: project.php");
 			exit;
 		}
-		else $err[]='Wrong username and/or password!';
+		else {echo "<script type='text/javascript'>;
 		
-			
+		error = 'password';
+		
+		</script>";		
 		}
+		
 	}
 
 	if($err)
@@ -79,13 +75,7 @@ if($_SESSION['msg'])
 {
 	// The script below shows the sliding panel on page load
 
-echo "   	<script type='text/javascript' src='jquery/jquery-1.9.0.min.js'></script>   ";
-echo '<script type="text/javascript">';
-echo '$(function(){
-   $("#toggle").prop("checked",true);
-   $("#openmenu").prop("checked",true);
-});';
-echo '</script>';
+
 
 	
 }
@@ -254,10 +244,9 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
                 </div>
         <form id="login" method="post" action="index.php">
                 <input tabindex="1" class="field" type="text" name="username" id="username" value="" size="23">
-                <input tabindex="3" alt="Login" type="image" src="icons/login/login_white.png" name="submit" value="Login" class="bt_login" >
+                <input tabindex="3" title="Login to Drag&Drool" alt="Login" type="image" src="icons/login/login_white.png" name="submit" value="Login" class="bt_login" >
                 <input type="hidden" name="submit" value="Login">
                 <input tabindex="2" class="field" type="password" name="password" id="password" size="23">
-                
 				<input title="Check to remember password" name="rememberMe" id="rememberMe" type="checkbox" value="1" checked="checked">
                 <div class="clear"></div>
                 <input id="recoverbox" type="checkbox" name="recoverbox">
@@ -307,11 +296,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 	<div class="tab">
 		<ul class="login">
 	    	<li class="left">&nbsp;</li>
-	        <li>click to <i>Sign In / Sign Up</i></li>
-			<li id="li_last">
-			<input name="toggle" type="checkbox" id="toggle">
-			<label id="menulabel" for="toggle"></label>
-			</li>
+	        <li id="sign_menu">click to <i>Login / Sign Up</i></li>
 	    	<li class="right">&nbsp;</li>
 		</ul> 
 	</div> <!-- / top -->
@@ -376,7 +361,7 @@ return $row[0];
     </ul>
 </div>
 
-        <script src="jquery/jquery.meny.min.js"></script>
+        <script src="jquery/meny.min.js"></script>
 
 <script>
                         // Create an instance of Meny
@@ -415,9 +400,15 @@ return $row[0];
                                 contents.style.padding = '0px';
                                 contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
                         }
-                        $("#menulabel").click(function (e) {	
+                        $("#sign_menu").click(function (e) {	
 			meny.open();				
-			});  
+			});
+			
+			if (typeof(error) != "undefined"){
+				meny.open();
+				$('.gridster').prepend('<li style="display:block" id="infobox"><h3 id="infobox_title">Please recheck.</h3><p id="wrongpassword_info"><i class="icon-emo-thumbsup"></i>You entered a wrong<br> Password or Username</p></li>');
+				$('#infobox').delay(13000).fadeOut();
+			}
 
                 </script>
 </body>

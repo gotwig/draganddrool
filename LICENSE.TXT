@@ -38,6 +38,9 @@ You should check it out.
 Copyright for the boxes area goes to http://gridster.net/
 (https://github.com/ducksboard/gridster.js) and DUCKSBOARD
 
+The top menu is powered by Meny, a 3D menu written by Hakim El Hattab
+https://github.com/hakimel/meny
+
 -------------------
 
 Font & icon license info
