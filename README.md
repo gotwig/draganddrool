@@ -45,7 +45,8 @@ HTML5 technics, to offer a seamless management for your images, texts and quotes
     1. Clone the repository onto your webserver.
     2. Import the file draganddrool.sql into one MySQL database.
     3. Configure your database in conf/Config.php
-    4. (Optional) - Setup your Filepicker.IO API Key in project.php
+    4. The grid at the login uses the id "2", in the MySQL table "grid".
+    5. (Optional) - Setup your Filepicker.IO API Key in project.php
     
                 
 All libraries and functions (like CSS Parent Selector) are included.
