@@ -433,7 +433,7 @@ return $row[0];
     </ul>
 </div>
 
-        <script src="jquery/meny.min.js"></script>
+        <script src="jquery/jquery.meny.min.js"></script>
 
 <script>
                         // Create an instance of Meny
