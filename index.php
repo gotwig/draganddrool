@@ -89,9 +89,10 @@ if($_SESSION['msg'])
   <link rel="stylesheet" type="text/css" href="css/grid.css">
 
     <link rel="stylesheet" type="text/css" href="css/slide.css" media="screen" />
-        
-        
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" media="screen" />
+    
     <script type='text/javascript' src='jquery/jquery-1.9.0.min.js'></script>
+    <script type='text/javascript' src='jquery/jquery-ui.js'></script>
   	<script type='text/javascript' src="jquery/jquery.gridster.js"></script> 
   	<script type='text/javascript' src='jquery/jquery.jeditable.mini.js'></script>
         
@@ -107,19 +108,89 @@ $(window).load(function(){
 
 $(function(){ //DOM Ready
     
+
+var grid_size = 50;
+var grid_margin = 5;
+var grid_height;
+var block_params = {
+    max_width: 6,
+    max_height: 6
+};
+    
        $(".gridster ul").gridster({
 			ready: function() {$('#spinner').remove(); $('.gridster').css({opacity: 0.0, visibility: "visible"}).fadeTo(1050, 1.0);
-							   $('#gridname').css({opacity: 0.0, visibility: "visible"}).delay(1800).fadeTo(1300, 1.0);
+							if ($("#resizable li").length == 0){ $("#infobox").css('display', 'block');}
 							  },
-            widget_margins: [5, 5],
-            widget_base_dimensions: [50, 50],
+        widget_margins: [grid_margin, grid_margin],
+        widget_base_dimensions: [grid_size, grid_size],
 			serialize_params: function($w, wgd) {
-				return { id: $w.prop('id'), col: wgd.col, row: wgd.row, sizex: wgd.sizex, sizey: wgd.sizey };
-			}
+				return { id: $w.data('id'), col: wgd.col, row: wgd.row, sizex: wgd.sizex, sizey: wgd.sizey };
+				},
+            draggable: {
+            	start: function(event, ui) {
+
+            	dragged = 1;
+        	}
+         
+            }
         });
 
     gridster = $(".gridster ul").gridster().data('gridster');
-});  
+    
+    $('.gs_w').resizable({
+        grid: [grid_size + (grid_margin * 2), grid_size + (grid_margin * 2)],
+        animate: false,
+        minWidth: grid_size,
+        minHeight: grid_size,
+        autoHide: true,
+        start: function(event, ui) {
+        	grid_height = gridster.$el.height();
+        },
+        resize: function(event, ui) {
+        	//set new grid height along the dragging period
+        	var delta = grid_size + grid_margin * 2;	        	
+        	if (event.offsetY > gridster.$el.height())
+        	{
+        		var extra = Math.floor((event.offsetY - grid_height) / delta + 1);
+	        	var new_height = grid_height + extra * delta;
+	        	gridster.$el.css('height', new_height);
+        	}
+        },
+        stop: function(event, ui) {
+            var resized = $(this);
+            setTimeout(function() {
+                resizeBlock(resized);
+            }, 300);
+        }
+    });
+    
+        $('.ui-resizable-handle').hover(function() {
+        gridster.disable();
+    }, function() {
+
+        gridster.enable();
+    });
+
+    function resizeBlock(elmObj) {
+
+        var elmObj = $(elmObj);
+        var w = elmObj.width() - grid_size;
+        var h = elmObj.height() - grid_size;
+
+        for (var grid_w = 1; w > 0; w -= (grid_size + (grid_margin * 2))) {
+
+            grid_w++;
+        }
+
+        for (var grid_h = 1; h > 0; h -= (grid_size + (grid_margin * 2))) {
+
+            grid_h++;
+        }
+
+        gridster.resize_widget(elmObj, grid_w, grid_h);
+        gridster.set_dom_grid_height();	        
+    }
+});
          
 });//]]>
 </script>
@@ -226,6 +297,7 @@ case "image": content='<li id="'+ id + '"><img alt="image content" data-content-
 <img id="spinner" alt="Loading Boxes..." src="icons/image_381811.gif" />
 
 <!-- Panel -->
+<style>#forkongithub a{background:rgba(39, 39, 39, 0.972549);color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#060;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:100px){#forkongithub{position:absolute;display:block;top:0;left:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;left:-60px;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);box-shadow:4px 2px 8px rgba(0,0,0,0.8);}}</style><span style="z-index:3" id="forkongithub"><a href="https://github.com/gotwig/draganddrool">Fork me on GitHub</a></span>
 
 	<div class="meny" id="panel">
 		<div class="content clearfix">
@@ -361,7 +433,7 @@ return $row[0];
     </ul>
 </div>
 
-        <script src="jquery/jquery.meny.min.js"></script>
+        <script src="jquery/meny.min.js"></script>
 
 <script>
                         // Create an instance of Meny

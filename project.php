@@ -60,16 +60,18 @@ if ($diff<60)
 <meta name="author" content="Eduard Gotwig">
 <meta name="keywords" content="drag and drool,drag, drool, eduard gotwig, drag, jquery drag, css4, css4 menu, css parent selectors, gridster, filepicker">
   
-  <link rel="stylesheet" type="text/css" href="css/grid.css">
+    <link rel="stylesheet" type="text/css" href="css/grid.css">
 
     <link rel="stylesheet" type="text/css" href="css/slide.css" media="screen" />
-        
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" media="screen" />
+    
     <script type='text/javascript' src='jquery/jquery-1.9.0.min.js'></script>
-  	<script type='text/javascript' src="jquery/jquery.gridster.js"></script> 
-  	<script type='text/javascript' src="jquery/jquery.lightbox_me.js"></script> 
-  	<script type='text/javascript' src='jquery/jquery.jeditable.mini.js'></script>
+    <script type='text/javascript' src='jquery/jquery-ui.js'></script>
+    <script type='text/javascript' src="jquery/jquery.gridster.js"></script> 
+    <script type='text/javascript' src="jquery/jquery.lightbox_me.js"></script> 
+    <script type='text/javascript' src='jquery/jquery.jeditable.mini.js'></script>
         
-        <script type="text/javascript">
+    <script type="text/javascript">
 (function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document); 
 
 filepicker.setKey('Put your Filepicker.IO API key here');
@@ -89,14 +91,22 @@ $(window).load(function(){
 
 $(function(){ //DOM Ready
     
+var grid_size = 50;
+var grid_margin = 5;
+var grid_height;
+var block_params = {
+    max_width: 6,
+    max_height: 6
+};
+    
        $(".gridster ul").gridster({
 			ready: function() {$('#spinner').remove(); $('.gridster').css({opacity: 0.0, visibility: "visible"}).fadeTo(1050, 1.0);
 							if ($("#resizable li").length == 0){ $("#infobox").css('display', 'block');}
 							  },
-            widget_margins: [5, 5],
-            widget_base_dimensions: [50, 50],
+        widget_margins: [grid_margin, grid_margin],
+        widget_base_dimensions: [grid_size, grid_size],
 			serialize_params: function($w, wgd) {
-				return { id: $w.data('id'), col: wgd.col, row: wgd.row, sizex: wgd.sizex, sizey: wgd.sizey };
+				return { id: $w.data('id'), col: wgd.col, row: wgd.row, sizex: wgd.size_x, sizey: wgd.size_y };
 				},
             draggable: {
             	start: function(event, ui) {
@@ -105,15 +115,83 @@ $(function(){ //DOM Ready
         	},
             	
                 stop: function(event, ui){
-					$.post('php/save_position.php', {data: this.serialize()}, function(ret) {
+					$.post('php/save_position.php', {data: this.serialize_changed()}, function(ret) {
 						//your callback
 					});
+					
+					console.log(this);
+					
 				}
             }
         });
 
     gridster = $(".gridster ul").gridster().data('gridster');
-});  
+    
+    $('.gs_w').resizable({
+        grid: [grid_size + (grid_margin * 2), grid_size + (grid_margin * 2)],
+        animate: false,
+        minWidth: grid_size,
+        minHeight: grid_size,
+        autoHide: true,
+        start: function(event, ui) {
+        	grid_height = gridster.$el.height();
+        },
+        resize: function(event, ui) {
+        	//set new grid height along the dragging period
+        	var delta = grid_size + grid_margin * 2;	        	
+        	if (event.offsetY > gridster.$el.height())
+        	{
+        		var extra = Math.floor((event.offsetY - grid_height) / delta + 1);
+	        	var new_height = grid_height + extra * delta;
+	        	gridster.$el.css('height', new_height);
+        	}
+        },
+        stop: function(event, ui) {
+            var resized = $(this);
+            setTimeout(function() {
+                resizeBlock(resized);
+            }, 300);
+
+    	    var gridster1 = $(".gridster ul").gridster().data('gridster');
+	    var positions = gridster1.serialize();
+
+	
+            $.post('php/save_position.php', {data: positions}, function(ret) {
+						//your callback
+					});
+        }
+    });
+    
+        $('.ui-resizable-handle').hover(function() {
+        gridster.disable();
+    }, function() {
+
+        gridster.enable();
+    });
+
+    function resizeBlock(elmObj) {
+
+        var elmObj = $(elmObj);
+        var w = elmObj.width() - grid_size;
+        var h = elmObj.height() - grid_size;
+
+        for (var grid_w = 1; w > 0; w -= (grid_size + (grid_margin * 2))) {
+
+            grid_w++;
+        }
+
+        for (var grid_h = 1; h > 0; h -= (grid_size + (grid_margin * 2))) {
+
+            grid_h++;
+        }
+
+        gridster.resize_widget(elmObj, grid_w, grid_h);
+        gridster.set_dom_grid_height();	        
+    }
+});
+    
+    
+     
          
 });//]]>
 </script>
@@ -161,6 +239,51 @@ case "image": content='<li data-id="'+ id + '"><img alt="image content" class="n
 			}
 	content = content + '<a class="remove_action">  <img alt="remove element" class="actionicon" src=icons/delete.png> </a></li>'
 	  	gridster.add_widget(content, 2, 2);
+
+var grid_size = 50;
+var grid_margin = 5;
+var grid_height;
+var block_params = {
+    max_width: 6,
+    max_height: 6
+};
+		    $('.gs_w').resizable({
+        grid: [grid_size + (grid_margin * 2), grid_size + (grid_margin * 2)],
+        animate: false,
+        minWidth: grid_size,
+        minHeight: grid_size,
+        autoHide: true,
+        start: function(event, ui) {
+        	grid_height = gridster.$el.height();
+        },
+        resize: function(event, ui) {
+        	//set new grid height along the dragging period
+        	var delta = grid_size + grid_margin * 2;	        	
+        	if (event.offsetY > gridster.$el.height())
+        	{
+        		var extra = Math.floor((event.offsetY - grid_height) / delta + 1);
+	        	var new_height = grid_height + extra * delta;
+	        	gridster.$el.css('height', new_height);
+        	}
+        },
+        stop: function(event, ui) {
+            var resized = $(this);
+            setTimeout(function() {
+                resizeBlock(resized);
+            }, 300);
+            $.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
+						//your callback
+					});
+        }
+    });
+
+        $('.ui-resizable-handle').hover(function() {
+        gridster.disable();
+    }, function() {
+
+        gridster.enable();
+    });
+
 	}
 
 
@@ -295,7 +418,7 @@ $(document).on("click", ".remove_action", function(e){
 			id:	id
 				},
                                 success: function (data) {
-$.post('php/save_position.php', {data: gridster.serialize()}, function(ret) {
+$.post('php/save_position.php', {data: gridster.serialize_changed()}, function(ret) {
                                                 //your callback
                         });                }
                         });
@@ -560,7 +683,7 @@ return $row[0];
 </div>
 
 
-        <script src="jquery/jquery.meny.min.js"></script>
+        <script src="jquery/meny.min.js"></script>
 
 <script>
                         // Create an instance of Meny

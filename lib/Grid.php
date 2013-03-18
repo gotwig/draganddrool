@@ -2,7 +2,7 @@
 class Grid
 {
     public static function switchAction()
-	{
+    {
 		global $link;
 		
 		$_SESSION['gridid'] = $_POST['id']; // @todo SQL-INYECTION
@@ -25,13 +25,13 @@ class Grid
 		foreach ($boxes as $box)
 		{
 			$box = array_map('intval', $box);
-			$sql = "UPDATE gridentries SET datarow='{$box['row']}' , datacolumn='{$box['col']}' WHERE id='{$box['id']}'"; // @todo SQL-INYECTION
+			$sql = "UPDATE gridentries SET datarow='{$box['row']}' , datacolumn='{$box['col']}' , `data-sizeX`='{$box['sizex']}' , `data-sizeY`='{$box['sizey']}'  WHERE id='{$box['id']}';"; // @todo SQL-INYECTION
 			mysqli_query($link,$sql);
-		
+			echo $sql;
 		}
-		
-		echo $sql;
 	}
+	
+
 	
 	public static function add()
 	{
