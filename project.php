@@ -102,6 +102,7 @@ var block_params = {
        $(".gridster ul").gridster({
 			ready: function() {$('#spinner').remove(); $('.gridster').css({opacity: 0.0, visibility: "visible"}).fadeTo(1050, 1.0);
 							if ($("#resizable li").length == 0){ $("#infobox").css('display', 'block');}
+                            dragged=0;
 							  },
         widget_margins: [grid_margin, grid_margin],
         widget_base_dimensions: [grid_size, grid_size],
