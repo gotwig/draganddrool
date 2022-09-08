@@ -1,8 +1,3 @@
-Warning: I have just done a few commits. You can't use Drag and Drool right now full functional.
-
-Drag and Drool is NOT secured versus SQL Injections!
-
-Please report all issues.
 <pre>
 
 oooooooooo.                                        .oo.     
