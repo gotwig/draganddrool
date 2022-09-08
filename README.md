@@ -26,7 +26,7 @@ o888bood8P'   d888b    `Y8bod8P' `Y8bod8P' o888o
                     Your Boxes in 2D.
 
 
-                   www.DragAndDrool.tk
+                   
 </pre>
 
 
